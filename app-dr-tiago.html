@@ -1104,7 +1104,7 @@ function animStep(fromId,toId,forward) {
   if(!f||!t) return;
   f.style.opacity='0'; f.style.transform='translateX('+(forward?'-20px':'20px')+')';
   setTimeout(()=>{
-    f.classList.remove('active'); f.style.opacity=''; f.style.transform='';
+    f.classList.remove('active'); f.style.display='none'; f.style.opacity=''; f.style.transform='';
     t.style.display='block'; t.style.opacity='0'; t.style.transform='translateX('+(forward?'20px':'-20px')+')';
     void t.offsetWidth;
     t.style.transition='opacity .3s,transform .3s'; t.style.opacity='1'; t.style.transform='translateX(0)';
