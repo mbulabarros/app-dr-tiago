@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Tiago Veras | Pneumopediatra · FC</title>
+<meta name="description" content="Dr. Tiago Neves Veras — Pneumopediatria e Fibrose Cística. Joinville/SC.">
+<meta name="theme-color" content="#1a3d5c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫁</text></svg>">
+<style>
+:root{
+  --moss:#1a3d5c;--fern:#2e7ea6;--leaf:#5ab4d6;--sage:#9fd3e8;
+  --cream:#faf8f4;--sand:#f0ece4;--bark:#5a4a3a;
+  --argila:#e08c3a;--honey:#c89544;--sky:#5ab4d6;
+  --alert:#e74c3c;--warn:#f39c12;--ok:#27ae60;
+  --text:#2c2c2c;--text-soft:#6b6b6b;--white:#fff;
+  --glass:rgba(255,255,255,.92);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.05);
+  --shadow-md:0 4px 20px rgba(0,0,0,.07);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.10);
+  --shadow-glow:0 0 50px rgba(90,180,214,.14);
+  --r-sm:12px;--r-md:18px;--r-lg:24px
+}
+*{box-sizing:border-box;margin:0;padding:0}
+*::-webkit-scrollbar{width:0}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--moss);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.splash{position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,var(--moss),#0a1f33 50%,#1a4d6a);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.splash.hide{opacity:0;transform:scale(1.08);pointer-events:none}
+.splash::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(90,180,214,.15),transparent 70%);animation:spGlow 2s ease-in-out infinite alternate}
+@keyframes spGlow{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.3);opacity:1}}
+.splash-logo{width:100px;height:100px;border-radius:50%;border:3px solid rgba(255,255,255,.2);object-fit:cover;animation:spFloat 2.5s ease-in-out infinite;box-shadow:0 0 80px rgba(90,180,214,.35);position:relative;z-index:1}
+@keyframes spFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.splash-name{font-family:'Playfair Display',serif;color:#fff;font-size:1.6rem;margin-top:20px;opacity:0;animation:sf .8s .4s ease forwards;position:relative;z-index:1}
+.splash-sub{color:var(--sage);font-size:.75rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-top:8px;opacity:0;animation:sf .8s .7s ease forwards;position:relative;z-index:1}
+.splash-loader{width:48px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:32px;overflow:hidden;position:relative;z-index:1}
+.splash-loader::after{content:'';display:block;width:60%;height:100%;background:linear-gradient(90deg,var(--leaf),var(--sage));border-radius:2px;animation:sl 1s ease-in-out infinite}
+@keyframes sf{to{opacity:1}}@keyframes sl{0%{transform:translateX(-100%)}100%{transform:translateX(220%)}}
+.sending-overlay{position:fixed;inset:0;z-index:8000;background:rgba(26,61,92,.96);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.sending-overlay.show{display:flex}
+.ck{width:70px;height:70px;border-radius:50%;background:var(--leaf);display:flex;align-items:center;justify-content:center;animation:ckPop .4s cubic-bezier(.22,1,.36,1)}
+@keyframes ckPop{from{transform:scale(0)}to{transform:scale(1)}}
+.ck .material-icons-round{font-size:36px;color:#fff}
+.sending-overlay p{color:#fff;font-size:1.1rem;font-weight:700}
+.sending-overlay .sub{color:var(--sage);font-size:.82rem}
+.leaf-particle{position:fixed;z-index:0;pointer-events:none;opacity:0;animation:lf linear infinite;filter:blur(.5px)}
+@keyframes lf{0%{opacity:0;transform:translateY(-20px) rotate(0) scale(.8)}8%{opacity:.2}90%{opacity:.05}100%{opacity:0;transform:translateY(100vh) rotate(360deg) scale(.8)}}
+.app{max-width:480px;margin:0 auto;min-height:100vh;position:relative;background:var(--cream);padding-bottom:90px;box-shadow:0 0 80px rgba(0,0,0,.25)}
+.screen{position:relative;z-index:1;padding:20px 18px;display:none}
+.screen.active{display:block;animation:si .45s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes si{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero{text-align:center;padding:35px 20px 20px;position:relative}
+.hero::before{content:'';position:absolute;top:15px;left:50%;transform:translateX(-50%);width:180px;height:180px;border-radius:50%;border:1px dashed rgba(90,180,214,.12);animation:rs 35s linear infinite}
+.hero::after{content:'';position:absolute;top:35px;left:50%;transform:translateX(-50%);width:140px;height:140px;border-radius:50%;border:1px dashed rgba(224,140,58,.08);animation:rs 25s linear infinite reverse}
+@keyframes rs{to{transform:translateX(-50%) rotate(360deg)}}
+.profile-ring{width:120px;height:120px;border-radius:50%;padding:3px;background:conic-gradient(from 0deg,var(--leaf),var(--fern),var(--argila),var(--honey),var(--leaf));display:inline-block;box-shadow:var(--shadow-lg),var(--shadow-glow),0 0 0 6px rgba(90,180,214,.06);animation:hi .7s cubic-bezier(.22,1,.36,1) forwards;position:relative;z-index:1}
+.profile-img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--white)}
+.hero h1{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--moss);margin:14px 0 2px}
+.hero .tagline{font-size:.82rem;color:var(--fern);font-weight:600;letter-spacing:.5px}
+.hero .sub-tagline{font-size:.72rem;color:var(--text-soft);margin-top:3px}
+.hero .crm{font-size:.7rem;color:var(--text-soft);margin-top:4px;opacity:.6}
+.hero .institution{display:inline-flex;align-items:center;gap:4px;margin-top:10px;padding:6px 16px;background:var(--sand);border-radius:20px;font-size:.7rem;color:var(--bark);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:transform .2s;text-decoration:none}
+.hero .institution:active{transform:scale(.95)}
+@keyframes hi{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.menu-grid{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.card{background:var(--glass);backdrop-filter:blur(12px);border-radius:var(--r-lg);padding:16px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:transform .2s cubic-bezier(.22,1,.36,1),box-shadow .2s;border:1px solid rgba(255,255,255,.5);box-shadow:var(--shadow-sm);-webkit-tap-highlight-color:transparent;position:relative;overflow:hidden}
+.card:active{transform:scale(.97)}
+.card-icon{width:46px;height:46px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.card-icon.blue{background:rgba(90,180,214,.12);color:var(--fern)}
+.card-icon.orange{background:rgba(224,140,58,.10);color:var(--argila)}
+.card-icon.teal{background:rgba(46,126,166,.12);color:var(--fern)}
+.card-icon.honey{background:rgba(200,149,68,.10);color:var(--honey)}
+.card-icon.fc{background:rgba(26,61,92,.10);color:var(--moss)}
+.card h3{font-size:.95rem;font-weight:700;margin:0;color:var(--moss)}
+.card p{font-size:.8rem;color:var(--text-soft);margin:2px 0 0;line-height:1.35}
+.card-featured{background:linear-gradient(135deg,var(--fern),var(--moss));border:none;box-shadow:var(--shadow-md),var(--shadow-glow)}
+.card-featured h3{color:#fff}.card-featured p{color:rgba(255,255,255,.75)}
+.card-featured .card-icon{background:rgba(255,255,255,.14);color:#fff}
+.menu-grid .card:nth-child(1){animation:hi .5s .2s cubic-bezier(.22,1,.36,1) both}
+.menu-grid .card:nth-child(2){animation:hi .5s .28s cubic-bezier(.22,1,.36,1) both}
+.menu-grid .card:nth-child(3){animation:hi .5s .36s cubic-bezier(.22,1,.36,1) both}
+.menu-grid .card:nth-child(4){animation:hi .5s .44s cubic-bezier(.22,1,.36,1) both}
+.menu-grid .card:nth-child(5){animation:hi .5s .52s cubic-bezier(.22,1,.36,1) both}
+.menu-grid .card:nth-child(6){animation:hi .5s .60s cubic-bezier(.22,1,.36,1) both}
+.path-selector{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+.path-btn{background:var(--white);border-radius:var(--r-lg);padding:22px 18px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;border:2px solid #e0dcd4;box-shadow:var(--shadow-sm);-webkit-tap-highlight-color:transparent}
+.path-btn:active{transform:scale(.97)}
+.path-btn.fc-path{border-color:rgba(26,61,92,.25);background:linear-gradient(135deg,#f0f7ff,#e8f4fb)}
+.path-btn.pn-path{border-color:rgba(90,180,214,.25);background:linear-gradient(135deg,#f5fbff,#eaf6fc)}
+.path-btn-icon{width:56px;height:56px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.path-btn.fc-path .path-btn-icon{background:rgba(26,61,92,.10);color:var(--moss)}
+.path-btn.pn-path .path-btn-icon{background:rgba(90,180,214,.14);color:var(--fern)}
+.path-btn-icon .material-icons-round{font-size:28px}
+.path-btn-text h3{font-size:1rem;font-weight:700;color:var(--moss);margin:0 0 3px}
+.path-btn-text p{font-size:.8rem;color:var(--text-soft);line-height:1.35;margin:0}
+.path-badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.path-badge.fc{background:rgba(26,61,92,.10);color:var(--moss)}
+.path-badge.pn{background:rgba(90,180,214,.14);color:var(--fern)}
+.btn{width:100%;padding:15px 20px;border:none;border-radius:50px;font-family:inherit;font-size:.93rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,box-shadow .15s;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,var(--fern),var(--moss));color:#fff;box-shadow:var(--shadow-md),var(--shadow-glow);margin-top:18px}
+.btn-whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.25);margin-top:18px}
+.btn-outline{background:transparent;color:var(--fern);border:2px solid var(--leaf);margin-top:12px}
+.btn-back{background:none;border:none;font-family:inherit;font-weight:700;color:var(--moss);cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-size:.9rem;margin-bottom:14px;padding:0;transition:transform .15s}
+.btn-back:active{transform:translateX(-3px)}
+.section-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--moss);margin-bottom:4px}
+.section-subtitle{font-size:.85rem;color:var(--text-soft);margin-bottom:18px;line-height:1.45}
+.form-card{background:var(--white);border-radius:var(--r-md);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+.form-card:focus-within{box-shadow:var(--shadow-md),0 0 0 2px rgba(90,180,214,.10)}
+.form-card-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--sand)}
+.form-card-header .material-icons-round{font-size:20px;color:var(--fern)}
+.form-card-header h2{font-size:.9rem;font-weight:700;color:var(--moss)}
+.field{margin-bottom:14px}.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:6px}
+.field label .hint{font-weight:400;color:var(--text-soft);font-size:.76rem}
+input[type="text"],input[type="tel"],input[type="number"],input[type="email"],input[type="date"],select,textarea{width:100%;padding:12px 13px;border:1.5px solid #e8e5e0;border-radius:var(--r-sm);background:var(--cream);font-family:inherit;font-size:16px;color:var(--text);transition:border-color .25s,box-shadow .25s;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--leaf);box-shadow:0 0 0 3px rgba(90,180,214,.12);background:var(--white)}
+textarea{resize:vertical;min-height:80px}
+input[type="range"]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;outline:none;margin:10px 0 4px;background:#e0e0e0}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;border:3px solid var(--fern);cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.slider-value{text-align:center;font-weight:800;font-size:1.6rem;margin-top:2px;color:var(--fern)}
+.slider-labels{display:flex;justify-content:space-between;font-size:.68rem;color:var(--text-soft)}
+.check-group{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.check-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--cream);border-radius:var(--r-sm);border:1.5px solid #e8e5e0;cursor:pointer;transition:border-color .2s,background .2s}
+.check-item input[type="checkbox"]{width:18px;height:18px;accent-color:var(--fern);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:.85rem;font-weight:500;color:var(--text);cursor:pointer;flex:1}
+.check-item:has(input:checked){border-color:var(--leaf);background:#f0faff}
+.check-item.danger:has(input:checked){border-color:var(--alert);background:#fff5f5}
+.check-item.warn:has(input:checked){border-color:var(--warn);background:#fffbf0}
+.progress-bar{display:flex;gap:5px;margin-bottom:20px}
+.progress-step{flex:1;height:4px;border-radius:2px;background:#e4e4e4;transition:background .4s}
+.progress-step.done{background:var(--leaf)}
+.progress-step.active{background:var(--honey);box-shadow:0 0 10px rgba(200,149,68,.35)}
+.step-counter{text-align:center;font-size:.72rem;color:var(--text-soft);font-weight:600;margin-bottom:16px}
+.step-counter strong{color:var(--fern)}
+.result-header{background:linear-gradient(150deg,var(--fern),var(--moss));color:#fff;border-radius:var(--r-lg);padding:24px 20px;text-align:center;margin-bottom:16px;box-shadow:var(--shadow-lg)}
+.risk-badge{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:50px;font-weight:800;font-size:1rem;margin-top:12px}
+.risk-badge.ok{background:rgba(39,174,96,.18);color:#1a7a42}
+.risk-badge.warn{background:rgba(243,156,18,.18);color:#b07000}
+.risk-badge.alert{background:rgba(231,76,60,.18);color:#c0392b}
+.result-metric{background:var(--white);border-radius:var(--r-md);padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:12px}
+.result-metric .material-icons-round{font-size:22px;color:var(--fern);flex-shrink:0}
+.result-metric .rm-label{font-size:.78rem;color:var(--text-soft);font-weight:600}
+.result-metric .rm-value{font-size:.95rem;font-weight:700;color:var(--moss)}
+.fc-flag{background:#fff5f0;border:1.5px solid #f5c6b0;border-radius:var(--r-sm);padding:10px 13px;margin-bottom:8px;font-size:.82rem;color:#8b3a20;line-height:1.45;display:flex;gap:8px;align-items:flex-start}
+.fc-flag .material-icons-round{font-size:16px;flex-shrink:0;margin-top:1px}
+.control-badge{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:50px;font-weight:800;font-size:.95rem;margin-top:12px}
+.control-badge.ok{background:rgba(39,174,96,.15);color:#1a7a42}
+.control-badge.warn{background:rgba(243,156,18,.15);color:#b07000}
+.control-badge.alert{background:rgba(231,76,60,.15);color:#c0392b}
+.control-badge.info{background:rgba(90,180,214,.15);color:var(--moss)}
+.calc-header{background:var(--white);border-radius:var(--r-md);padding:14px;margin-bottom:14px;box-shadow:var(--shadow-sm)}
+.calc-aviso{display:flex;align-items:flex-start;gap:10px;background:#e8f4fb;border:1.5px solid var(--leaf);border-radius:var(--r-md);padding:12px 14px;margin-bottom:18px;font-size:.82rem;color:var(--moss);line-height:1.5}
+.fc-tag{display:inline-block;background:rgba(26,61,92,.10);color:var(--moss);border-radius:4px;font-size:.62rem;font-weight:800;padding:1px 6px;margin-left:5px;text-transform:uppercase;vertical-align:middle}
+.calc-result-box{background:var(--white);border-radius:var(--r-md);padding:16px;margin-top:16px;box-shadow:var(--shadow-sm)}
+.dose-line{font-size:.88rem;color:var(--text);padding:8px 0;border-bottom:1px solid var(--sand);display:flex;justify-content:space-between;align-items:center}
+.dose-line:last-child{border-bottom:none}
+.dose-line .dl-label{color:var(--text-soft);font-size:.82rem}
+.dose-line .dl-val{font-weight:700;color:var(--moss)}
+.dose-line .dl-nota{font-size:.75rem;color:var(--text-soft)}
+.calc-copy-btn{width:100%;margin-top:12px;padding:13px;border:none;border-radius:50px;background:var(--fern);color:#fff;font-family:inherit;font-weight:700;font-size:.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.service-card{background:var(--white);border-radius:var(--r-lg);padding:20px;margin-bottom:12px;box-shadow:var(--shadow-sm);border-left:4px solid var(--fern)}
+.service-card:nth-child(even){border-left-color:var(--argila)}
+.service-card:active{transform:scale(.98)}
+.service-tag{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--fern);margin-bottom:6px}
+.service-card:nth-child(even) .service-tag{color:var(--argila)}
+.service-card h3{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--moss);margin:0 0 6px}
+.service-card p{font-size:.82rem;color:var(--text-soft);line-height:1.5;margin:0}
+.service-item{font-size:.78rem;color:var(--text-soft);padding:3px 0;display:flex;gap:6px}
+.service-item::before{content:'•';color:var(--leaf);font-weight:800;flex-shrink:0}
+.pilar-card{background:var(--white);border-radius:var(--r-lg);padding:18px;margin-bottom:10px;box-shadow:var(--shadow-sm);display:flex;gap:14px;align-items:flex-start}
+.pilar-icon{width:50px;height:50px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pilar-icon.p1{background:rgba(26,61,92,.10);color:var(--moss)}
+.pilar-icon.p2{background:rgba(90,180,214,.12);color:var(--fern)}
+.pilar-icon.p3{background:rgba(224,140,58,.10);color:var(--argila)}
+.pilar-icon.p4{background:rgba(200,149,68,.10);color:var(--honey)}
+.pilar-icon.p5{background:rgba(39,174,96,.10);color:#27ae60}
+.pilar-card h3{font-size:.95rem;font-weight:700;color:var(--moss);margin:0 0 5px}
+.pilar-card p{font-size:.8rem;color:var(--text-soft);line-height:1.45;margin:0}
+.pilar-destaque{background:linear-gradient(135deg,var(--fern),var(--moss));border-radius:var(--r-lg);padding:20px;margin-bottom:20px;color:#fff}
+.pilar-destaque h2{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:6px}
+.pilar-destaque p{font-size:.82rem;opacity:.85;line-height:1.5}
+.article-card{background:var(--white);border-radius:var(--r-md);padding:16px;margin-bottom:10px;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .15s;position:relative}
+.article-card:active{transform:scale(.98)}
+.article-card::after{content:'→';position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--leaf);font-size:1.2rem;opacity:.4}
+.article-tag{display:inline-block;background:rgba(224,140,58,.08);color:var(--argila);padding:3px 10px;border-radius:20px;font-size:.65rem;font-weight:800;text-transform:uppercase}
+.article-card h3{font-family:'Playfair Display',serif;font-size:1rem;margin:7px 0 4px;color:var(--moss);padding-right:30px}
+.article-card p{font-size:.82rem;color:var(--text-soft);line-height:1.4;padding-right:20px}
+.contact-item{display:flex;align-items:center;gap:13px;padding:14px;background:var(--white);border-radius:var(--r-md);margin-bottom:8px;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .15s;text-decoration:none;color:inherit}
+.contact-item:active{transform:scale(.97)}
+.contact-item .material-icons-round{font-size:22px;color:var(--fern)}
+.contact-item .label{font-weight:600;font-size:.9rem}
+.contact-item .detail{font-size:.78rem;color:var(--text-soft)}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100;background:#fff;padding:8px 0 calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:space-around;box-shadow:0 -4px 24px rgba(0,0,0,.06);border-top-left-radius:var(--r-lg);border-top-right-radius:var(--r-lg)}
+.nav-item{text-align:center;color:#c0c0c0;text-decoration:none;font-size:.58rem;font-weight:600;flex:1;cursor:pointer;padding:4px 0;-webkit-tap-highlight-color:transparent}
+.nav-item.active{color:var(--fern)}
+.nav-item .material-icons-round{display:block;font-size:21px;margin-bottom:1px}
+.nav-item.active::after{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--fern);margin:2px auto 0}
+.footer-info{text-align:center;font-size:.68rem;color:var(--text-soft);opacity:.5;margin-top:25px;padding:0 20px;line-height:1.5}
+.divider{height:1px;background:var(--sand);margin:16px 0}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:#1a3d5c;color:#fff;padding:12px 22px;border-radius:50px;font-size:.85rem;font-weight:600;z-index:9000;transition:transform .3s cubic-bezier(.22,1,.36,1);white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.emergency-banner{background:linear-gradient(135deg,#c0392b,#96281b);border-radius:var(--r-md);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;color:#fff}
+.emergency-banner .material-icons-round{font-size:22px;flex-shrink:0}
+.emergency-banner .eb-text{font-size:.8rem;font-weight:600;line-height:1.4}
+.emergency-banner .eb-num{font-size:1.1rem;font-weight:800;letter-spacing:1px}
+@media(min-width:481px){.app{border-left:1px solid #eee;border-right:1px solid #eee}}
+</style>
+</head>
+<body>
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <img src="perfil.jpg" alt="" class="splash-logo">
+  <div class="splash-name">Dr. Tiago Veras</div>
+  <div class="splash-sub">Pneumopediatria · FC</div>
+  <div class="splash-loader"></div>
+</div>
+<div class="sending-overlay" id="sendingOverlay">
+  <div class="ck"><span class="material-icons-round">check</span></div>
+  <p>Abrindo WhatsApp...</p>
+  <span class="sub">Dados enviados ao consultório</span>
+</div>
+<div id="confettiBox"></div>
+<div class="app" id="app">
+
+<!-- ===== HOME ===== -->
+<div id="home" class="screen active">
+  <div class="hero">
+    <div class="profile-ring"><img src="perfil.jpg" alt="Dr. Tiago Veras" class="profile-img"></div>
+    <h1>Dr. Tiago Veras</h1>
+    <p class="tagline">Pneumopediatra</p>
+    <p class="sub-tagline">Asma · Sibilância · Fibrose Cística</p>
+    <div class="crm">CRM-SC 12556</div>
+    <a class="institution" href="https://maps.google.com/?q=Joinville+SC" target="_blank">
+      <span class="material-icons-round" style="font-size:13px">place</span> Joinville · SC
+    </a>
+  </div>
+  <div class="emergency-banner">
+    <span class="material-icons-round">emergency</span>
+    <div class="eb-text">Crise grave? Não espere.<br><span class="eb-num">SAMU 192</span></div>
+  </div>
+  <div class="menu-grid">
+    <div class="card card-featured" onclick="navTo('selector')">
+      <div class="card-icon blue"><span class="material-icons-round">assignment</span></div>
+      <div><h3>Pré-Consulta Digital</h3><p>FC ou Pneumo Geral — dados chegam antes da consulta.</p></div>
+    </div>
+    <div class="card" onclick="navTo('calc')">
+      <div class="card-icon orange"><span class="material-icons-round">medication</span></div>
+      <div><h3>Calculadora de Doses</h3><p>Pneumo + Fibrose Cística · trava de dose teto.</p></div>
+    </div>
+    <div class="card" onclick="navTo('contact')">
+      <div class="card-icon teal"><span class="material-icons-round">calendar_today</span></div>
+      <div><h3>Agendar Consulta</h3><p>Presencial ou Telemedicina.</p></div>
+    </div>
+    <div class="card" onclick="navTo('services')">
+      <div class="card-icon honey"><span class="material-icons-round">star</span></div>
+      <div><h3>Serviços</h3><p>Consulta, Acompanhamento FC, Espirometria.</p></div>
+    </div>
+    <div class="card" onclick="navTo('abordagem')">
+      <div class="card-icon fc"><span class="material-icons-round">science</span></div>
+      <div><h3>Nossa Abordagem</h3><p>Protocolo baseado em evidências · pesquisa clínica.</p></div>
+    </div>
+    <div class="card" onclick="navTo('articles')">
+      <div class="card-icon blue"><span class="material-icons-round">article</span></div>
+      <div><h3>Artigos</h3><p>Respiração saudável · FC · Asma em foco.</p></div>
+    </div>
+  </div>
+  <div class="footer-info">INOVAMED · inovamed.pro<br>Tecnologia a serviço da medicina</div>
+</div>
+
+<!-- ===== SELETOR DE PERFIL ===== -->
+<div id="selector" class="screen">
+  <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
+  <p class="section-title">Pré-Consulta Digital</p>
+  <p class="section-subtitle">Selecione o tipo de atendimento para continuar.</p>
+  <div class="path-selector">
+    <div class="path-btn fc-path" onclick="selectPath('fc')">
+      <div class="path-btn-icon"><span class="material-icons-round">biotech</span></div>
+      <div class="path-btn-text">
+        <h3>Fibrose Cística</h3>
+        <p>Acompanhamento especializado · protocolo FC · dados longitudinais.</p>
+        <span class="path-badge fc">Segue protocolo REBRAFC</span>
+      </div>
+    </div>
+    <div class="path-btn pn-path" onclick="selectPath('pn')">
+      <div class="path-btn-icon"><span class="material-icons-round">air</span></div>
+      <div class="path-btn-text">
+        <h3>Pneumologia Geral</h3>
+        <p>Asma · sibilância · tosse crônica · ronco · pneumonia de repetição.</p>
+        <span class="path-badge pn">Ambulatório pneumo pediátrico</span>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:.75rem;color:var(--text-soft);margin-top:20px;line-height:1.5">
+    Os dados são enviados diretamente ao Dr. Tiago antes da sua consulta.
+  </p>
+</div>
+
+<!-- ===== FC — ETAPA 1: IDENTIFICAÇÃO ===== -->
+<div id="fc1" class="screen">
+  <button class="btn-back" onclick="navTo('selector')"><span class="material-icons-round">arrow_back</span> Voltar</button>
+  <div class="progress-bar">
+    <div class="progress-step active" id="fcProg1"></div>
+    <div class="progress-step" id="fcProg2"></div>
+    <div class="progress-step" id="fcProg3"></div>
+    <div class="progress-step" id="fcProg4"></div>
+    <div class="progress-step" id="fcProg5"></div>
+  </div>
+  <div class="step-counter" id="fcStepCounter">Etapa <strong>1</strong> de <strong>5</strong></div>
+  <p class="section-title">Identificação</p>
+  <p class="section-subtitle">Fibrose Cística — dados básicos do paciente.</p>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">person</span><h2>Paciente</h2></div>
+    <div class="field"><label>Nome completo do paciente</label><input type="text" id="fcNome" placeholder="Ex: João Pedro Silva"></div>
+    <div class="field"><label>Data de nascimento</label><input type="date" id="fcDataNasc"></div>
+    <div class="field"><label>Sexo</label>
+      <select id="fcSexo"><option value="">Selecione</option><option>Masculino</option><option>Feminino</option></select></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">family_restroom</span><h2>Responsável</h2></div>
+    <div class="field"><label>Nome do responsável</label><input type="text" id="fcResponsavel" placeholder="Ex: Maria Silva"></div>
+    <div class="field"><label>Telefone / WhatsApp</label><input type="tel" id="fcTelefone" placeholder="(47) 9 9999-9999"></div>
+    <div class="field"><label>E-mail <span class="hint">(para relatório pós-consulta)</span></label><input type="email" id="fcEmail" placeholder="email@exemplo.com"></div>
+    <div class="field"><label>É a primeira consulta com o Dr. Tiago?</label>
+      <select id="fcPrimeira"><option value="nao">Não, já sou paciente</option><option value="sim">Sim, primeira vez</option></select></div>
+  </div>
+  <button class="btn btn-primary" onclick="nextFcStep(2)"><span class="material-icons-round">arrow_forward</span> Continuar</button>
+</div>
+
+<!-- ===== FC — ETAPA 2: DIAGNÓSTICO FC ===== -->
+<div id="fc2" class="screen">
+  <button class="btn-back" onclick="prevFcStep(1)"><span class="material-icons-round">arrow_back</span> Voltar</button>
+  <div class="progress-bar">
+    <div class="progress-step done" id="fc2Prog1"></div>
+    <div class="progress-step active" id="fc2Prog2"></div>
+    <div class="progress-step" id="fc2Prog3"></div>
+    <div class="progress-step" id="fc2Prog4"></div>
+    <div class="progress-step" id="fc2Prog5"></div>
+  </div>
+  <div class="step-counter">Etapa <strong>2</strong> de <strong>5</strong></div>
+  <p class="section-title">Diagnóstico FC</p>
+  <p class="section-subtitle">Informações sobre o diagnóstico e tratamento modificador da doença.</p>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">biotech</span><h2>Genótipo</h2></div>
+    <div class="field"><label>Mutações conhecidas <span class="hint">(deixe em branco se não souber)</span></label>
+      <input type="text" id="fcGenotipo" placeholder="Ex: F508del/F508del"></div>
+    <div class="field"><label>Ano do diagnóstico</label>
+      <input type="number" id="fcAnoDiag" placeholder="Ex: 2018" min="1980" max="2026"></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">medication</span><h2>Modulador CFTR</h2></div>
+    <div class="field"><label>Medicamento modulador em uso</label>
+      <select id="fcModulador">
+        <option value="nenhum">Não prescrito / Não elegível</option>
+        <option value="trikafta">Elexacaftor/Tezacaftor/Ivacaftor (Trikafta)</option>
+        <option value="orkambi">Lumacaftor/Ivacaftor (Orkambi)</option>
+        <option value="kalydeco">Ivacaftor (Kalydeco)</option>
+        <option value="outro">Outro modulador</option>
+      </select></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">restaurant</span><h2>Pâncreas</h2></div>
+    <div class="field"><label>Status pancreático</label>
+      <select id="fcPancreas">
+        <option value="insuficiente">Insuficiente pancreático (usa enzimas)</option>
+        <option value="suficiente">Suficiente pancreático (não usa enzimas)</option>
+        <option value="nao_sei">Não sei informar</option>
+      </select></div>
+  </div>
+  <button class="btn btn-primary" onclick="nextFcStep(3)"><span class="material-icons-round">arrow_forward</span> Continuar</button>
+</div>
+
+<!-- ===== FC — ETAPA 3: FUNÇÃO PULMONAR ===== -->
+<div id="fc3" class="screen">
+  <button class="btn-back" onclick="prevFcStep(2)"><span class="material-icons-round">arrow_back</span> Voltar</button>
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step active"></div><div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="step-counter">Etapa <strong>3</strong> de <strong>5</strong></div>
+  <p class="section-title">Função Pulmonar</p>
+  <p class="section-subtitle">Espirometria, exacerbações e microbiologia recente.</p>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">monitor_heart</span><h2>Espirometria</h2></div>
+    <div class="field"><label>VEF1% predito <span class="hint">(última espirometria)</span></label>
+      <input type="number" id="fcVef1" placeholder="Ex: 72" min="10" max="130"></div>
+    <div class="field"><label>CVF% predito <span class="hint">(se disponível)</span></label>
+      <input type="number" id="fcCvf" placeholder="Ex: 84" min="10" max="130"></div>
+    <div class="field"><label>Comparado à última medição, o VEF1:</label>
+      <select id="fcVef1Trend">
+        <option value="estavel">Estável</option>
+        <option value="melhorou">Melhorou</option>
+        <option value="piorou">Piorou</option>
+        <option value="nunca_fez">Nunca fiz espirometria</option>
+        <option value="nao_sei">Não sei informar</option>
+      </select></div>
+    <div class="field"><label>Saturação de oxigênio habitual em casa</label>
+      <select id="fcSat">
+        <option value="normal">Acima de 95%</option>
+        <option value="limiar">Entre 93% e 95%</option>
+        <option value="baixa">Abaixo de 93%</option>
+        <option value="nao_mede">Não medimos em casa</option>
+      </select></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">sick</span><h2>Exacerbações (últimos 3 meses)</h2></div>
+    <div class="field"><label>Exacerbações tratadas com antibiótico oral</label>
+      <input type="number" id="fcExacOralEp" placeholder="Número de episódios" min="0" max="10" value="0"></div>
+    <div class="field"><label>Exacerbações com antibiótico endovenoso</label>
+      <input type="number" id="fcExacIvEp" placeholder="Número de episódios" min="0" max="10" value="0"></div>
+    <div class="field"><label>Dias totais de ATB endovenoso (se houver)</label>
+      <input type="number" id="fcExacIvDias" placeholder="Ex: 14" min="0" max="90" value="0"></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">coronavirus</span><h2>Microbiologia recente</h2></div>
+    <p style="font-size:.78rem;color:var(--text-soft);margin-bottom:10px">Selecione todos que aparecem na última cultura de escarro:</p>
+    <div class="check-group">
+      <div class="check-item warn"><input type="checkbox" id="fcPaNoMuc"><label for="fcPaNoMuc">Pseudomonas aeruginosa não-mucóide</label></div>
+      <div class="check-item danger"><input type="checkbox" id="fcPaMuc"><label for="fcPaMuc">Pseudomonas aeruginosa mucóide</label></div>
+      <div class="check-item danger"><input type="checkbox" id="fcMrsa"><label for="fcMrsa">S. aureus resistente (MRSA)</label></div>
+      <div class="check-item danger"><input type="checkbox" id="fcBurk"><label for="fcBurk">Burkholderia cepacia complex</label></div>
+      <div class="check-item warn"><input type="checkbox" id="fcSteno"><label for="fcSteno">Stenotrophomonas maltophilia</label></div>
+      <div class="check-item"><input type="checkbox" id="fcSemCult"><label for="fcSemCult">Sem colônia patogênica / Não fiz cultura recente</label></div>
+    </div>
+  </div>
+  <button class="btn btn-primary" onclick="nextFcStep(4)"><span class="material-icons-round">arrow_forward</span> Continuar</button>
+</div>
+
+<!-- ===== FC — ETAPA 4: NUTRIÇÃO + ADERÊNCIA ===== -->
+<div id="fc4" class="screen">
+  <button class="btn-back" onclick="prevFcStep(3)"><span class="material-icons-round">arrow_back</span> Voltar</button>
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step active"></div><div class="progress-step"></div>
+  </div>
+  <div class="step-counter">Etapa <strong>4</strong> de <strong>5</strong></div>
+  <p class="section-title">Nutrição e Aderência</p>
+  <p class="section-subtitle">Estado nutricional e rotina de tratamento.</p>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">monitor_weight</span><h2>Antropometria atual</h2></div>
+    <div class="field"><label>Peso atual (kg)</label>
+      <input type="number" id="fcPeso" placeholder="Ex: 32.5" step="0.1" min="3" max="150"></div>
+    <div class="field"><label>Altura atual (cm)</label>
+      <input type="number" id="fcAltura" placeholder="Ex: 138" min="50" max="220"></div>
+    <div class="field"><label>Apetite nas últimas semanas</label>
+      <select id="fcApetite">
+        <option value="bom">Bom — come bem</option>
+        <option value="regular">Regular — come menos que o habitual</option>
+        <option value="ruim">Ruim — recusa muitos alimentos</option>
+      </select></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">medication</span><h2>Aderência ao tratamento</h2></div>
+    <div class="field"><label>Modulador CFTR</label>
+      <select id="fcAdhMod">
+        <option value="regular">Uso regular — todos os dias</option>
+        <option value="irregular">Irregular — esquece às vezes</option>
+        <option value="nao_usa">Não está usando</option>
+        <option value="nao_prescrito">Não prescrito</option>
+      </select></div>
+    <div class="field"><label>Enzimas pancreáticas</label>
+      <select id="fcAdhEnzima">
+        <option value="regular">Uso regular em todas as refeições</option>
+        <option value="irregular">Irregular</option>
+        <option value="nao_usa">Não usa</option>
+      </select></div>
+    <div class="field"><label>Vitaminas ADEK</label>
+      <select id="fcVitaminas">
+        <option value="regular">Uso regular</option>
+        <option value="irregular">Irregular</option>
+        <option value="nao_usa">Não usa</option>
+      </select></div>
+    <div class="field"><label>Fisioterapia respiratória</label>
+      <select id="fcFisio">
+        <option value="diaria">Diária</option>
+        <option value="3-4">3 a 4 vezes por semana</option>
+        <option value="irregular">Irregular</option>
+        <option value="nao_faz">Não faz</option>
+      </select></div>
+    <div class="field"><label>Nebulizações (DNase, sol. hipertônica, ATB inalatório)</label>
+      <select id="fcNebuliz">
+        <option value="conforme">Conforme prescrito</option>
+        <option value="irregular">Irregular</option>
+        <option value="nao_prescritas">Não prescritas</option>
+      </select></div>
+    <div class="field"><label>Vacinas em dia?</label>
+      <select id="fcVacinas">
+        <option value="sim">Sim</option>
+        <option value="parcial">Parcialmente</option>
+        <option value="nao_sei">Não sei informar</option>
+      </select></div>
+  </div>
+  <button class="btn btn-primary" onclick="nextFcStep(5)"><span class="material-icons-round">arrow_forward</span> Continuar</button>
+</div>
+
+<!-- ===== FC — ETAPA 5: QUALIDADE DE VIDA ===== -->
+<div id="fc5" class="screen">
+  <button class="btn-back" onclick="prevFcStep(4)"><span class="material-icons-round">arrow_back</span> Voltar</button>
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step active"></div>
+  </div>
+  <div class="step-counter">Etapa <strong>5</strong> de <strong>5</strong></div>
+  <p class="section-title">Qualidade de Vida</p>
+  <p class="section-subtitle">Última etapa — conte como está sendo a rotina.</p>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">sentiment_satisfied</span><h2>Bem-estar geral</h2></div>
+    <div class="field">
+      <label>Como avalia a qualidade de vida do paciente hoje? (0 = péssima · 10 = excelente)</label>
+      <input type="range" id="fcQv" min="0" max="10" value="7" oninput="document.getElementById('fcQvVal').textContent=this.value">
+      <div class="slider-value" id="fcQvVal">7</div>
+      <div class="slider-labels"><span>Péssima</span><span>Excelente</span></div>
+    </div>
+    <div class="field" style="margin-top:14px"><label>Rotina escolar e social</label>
+      <select id="fcRotina">
+        <option value="normal">Normal — frequenta escola regularmente</option>
+        <option value="parcial">Comprometida parcialmente — faltas frequentes</option>
+        <option value="muito">Muito comprometida — dificuldade significativa</option>
+      </select></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">chat</span><h2>Perguntas ao Dr. Tiago</h2></div>
+    <div class="field"><label>O que mais te preocupa hoje?</label>
+      <textarea id="fcPreocupacao" placeholder="Fique à vontade para contar..."></textarea></div>
+    <div class="field"><label>Perguntas específicas para a consulta</label>
+      <textarea id="fcPerguntas" placeholder="Liste suas dúvidas..."></textarea></div>
+  </div>
+  <button class="btn btn-primary" onclick="verResultadoFC()"><span class="material-icons-round">analytics</span> Ver Resultado</button>
+</div>
+
+<!-- ===== FC — RESULTADO ===== -->
+<div id="fc-result" class="screen">
+  <div class="result-header">
+    <span class="material-icons-round" style="font-size:32px">monitor_heart</span>
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-top:8px">Resumo Clínico FC</div>
+    <div style="font-size:.82rem;opacity:.8;margin-top:3px">Pré-consulta · Dr. Tiago Veras</div>
+    <div id="fcRiscoBadge"></div>
+  </div>
+  <div id="fcResultMetrics"></div>
+  <div id="fcFlags"></div>
+  <button class="btn btn-whatsapp" onclick="enviarFC()">
+    <span class="material-icons-round">send</span> Enviar para o Dr. Tiago
+  </button>
+  <button class="btn btn-outline" onclick="prevFcStep(5)">
+    <span class="material-icons-round">edit</span> Corrigir dados
+  </button>
+</div>
+
+<!-- ===== PNEUMO — ETAPA 1: IDENTIFICAÇÃO + QUEIXA ===== -->
+<div id="pn1" class="screen">
+  <button class="btn-back" onclick="navTo('selector')"><span class="material-icons-round">arrow_back</span> Voltar</button>
+  <div class="progress-bar">
+    <div class="progress-step active" id="pnProg1"></div>
+    <div class="progress-step" id="pnProg2"></div>
+    <div class="progress-step" id="pnProg3"></div>
+    <div class="progress-step" id="pnProg4"></div>
+    <div class="progress-step" id="pnProg5"></div>
+  </div>
+  <div class="step-counter" id="pnStepCounter">Etapa <strong>1</strong> de <strong>5</strong></div>
+  <p class="section-title">Identificação</p>
+  <p class="section-subtitle">Pneumologia Geral — quem é o paciente e o que está sentindo.</p>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">person</span><h2>Paciente</h2></div>
+    <div class="field"><label>Nome completo do paciente</label>
+      <input type="text" id="pnNome" placeholder="Ex: Sofia Mendes"></div>
+    <div class="field"><label>Idade (anos)</label>
+      <input type="number" id="pnIdade" placeholder="Ex: 7" min="0" max="18"></div>
+    <div class="field"><label>É a primeira consulta com o Dr. Tiago?</label>
+      <select id="pnPrimeira"><option value="nao">Não, já sou paciente</option><option value="sim">Sim, primeira vez</option></select></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">family_restroom</span><h2>Responsável</h2></div>
+    <div class="field"><label>Nome do responsável</label><input type="text" id="pnResponsavel" placeholder="Ex: Ana Mendes"></div>
+    <div class="field"><label>Telefone / WhatsApp</label><input type="tel" id="pnTelefone" placeholder="(47) 9 9999-9999"></div>
+    <div class="field"><label>E-mail</label><input type="email" id="pnEmail" placeholder="email@exemplo.com"></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">sick</span><h2>Motivo da consulta</h2></div>
+    <p style="font-size:.78rem;color:var(--text-soft);margin-bottom:10px">Selecione todos que se aplicam:</p>
+    <div class="check-group">
+      <div class="check-item"><input type="checkbox" id="pnQTosse"><label for="pnQTosse">Tosse</label></div>
+      <div class="check-item"><input type="checkbox" id="pnQSib"><label for="pnQSib">Sibilância / chiado no peito</label></div>
+      <div class="check-item"><input type="checkbox" id="pnQFalta"><label for="pnQFalta">Falta de ar / dificuldade respiratória</label></div>
+      <div class="check-item"><input type="checkbox" id="pnQPneumo"><label for="pnQPneumo">Pneumonia ou bronquite de repetição</label></div>
+      <div class="check-item"><input type="checkbox" id="pnQRonco"><label for="pnQRonco">Ronco e apneia do sono</label></div>
+      <div class="check-item"><input type="checkbox" id="pnQAsma"><label for="pnQAsma">Asma (diagnóstico já confirmado)</label></div>
+      <div class="check-item"><input type="checkbox" id="pnQOutro"><label for="pnQOutro">Outro motivo</label></div>
+    </div>
+    <div class="field" style="margin-top:12px"><label>Há quanto tempo?</label>
+      <select id="pnDuracao">
+        <option value="agudo">Menos de 1 semana (agudo)</option>
+        <option value="subagudo">1 a 4 semanas</option>
+        <option value="meses">1 a 6 meses</option>
+        <option value="cronico_longo">Mais de 6 meses</option>
+        <option value="anos">Crônico — há anos</option>
+      </select></div>
+  </div>
+  <button class="btn btn-primary" onclick="nextPnStep(2)"><span class="material-icons-round">arrow_forward</span> Continuar</button>
+</div>
+
+<!-- ===== PNEUMO — ETAPA 2: SINTOMAS ===== -->
+<div id="pn2" class="screen">
+  <button class="btn-back" onclick="prevPnStep(1)"><span class="material-icons-round">arrow_back</span> Voltar</button>
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step active"></div>
+    <div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="step-counter">Etapa <strong>2</strong> de <strong>5</strong></div>
+  <p class="section-title">Sintomas Respiratórios</p>
+  <p class="section-subtitle">Caracterize os sintomas com mais detalhe.</p>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">air</span><h2>Tosse</h2></div>
+    <div class="field"><label>Tipo de tosse</label>
+      <select id="pnTosse">
+        <option value="ausente">Não tem tosse</option>
+        <option value="seca">Seca</option>
+        <option value="produtiva">Produtiva (com catarro)</option>
+        <option value="ladrante">Ladrante / metálica (tipo crupe)</option>
+        <option value="quintosa">Quintosa / em acessos</option>
+      </select></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">hearing</span><h2>Sibilância</h2></div>
+    <div class="field"><label>Frequência do chiado</label>
+      <select id="pnSib">
+        <option value="ausente">Não tem sibilância</option>
+        <option value="ocasional">Ocasional (1–2 episódios/mês)</option>
+        <option value="frequente">Frequente (toda semana)</option>
+        <option value="diaria">Diária</option>
+      </select></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">psychology_alt</span><h2>Padrão temporal</h2></div>
+    <div class="field"><label>Quando os sintomas pioram?</label>
+      <select id="pnPadrao">
+        <option value="noturno">Piora noturna (acorda à noite)</option>
+        <option value="matinal">Piora matinal</option>
+        <option value="esforco">Ao esforço físico</option>
+        <option value="sazonal">Sazonal (inverno / primavera)</option>
+        <option value="constante">Constante — sem variação</option>
+        <option value="nao_se_aplica">Não se aplica</option>
+      </select></div>
+    <div class="field"><label>Febre nas últimas 48h?</label>
+      <select id="pnFebre">
+        <option value="nao">Não</option>
+        <option value="baixa">Sim, abaixo de 38,5°C</option>
+        <option value="alta">Sim, 38,5°C ou acima</option>
+      </select></div>
+    <div class="field"><label>Idas ao PS por causa respiratória (últimos 12 meses)</label>
+      <select id="pnPsVisitas">
+        <option value="nenhuma">Nenhuma</option>
+        <option value="uma_duas">1 a 2 vezes</option>
+        <option value="tres4">3 a 4 vezes</option>
+        <option value="mais4">Mais de 4 vezes</option>
+      </select></div>
+  </div>
+  <button class="btn btn-primary" onclick="nextPnStep(3)"><span class="material-icons-round">arrow_forward</span> Continuar</button>
+</div>
+
+<!-- ===== PNEUMO — ETAPA 3: EXPOSIÇÃO AMBIENTAL ===== -->
+<div id="pn3" class="screen">
+  <button class="btn-back" onclick="prevPnStep(2)"><span class="material-icons-round">arrow_back</span> Voltar</button>
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step active"></div><div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="step-counter">Etapa <strong>3</strong> de <strong>5</strong></div>
+  <p class="section-title">Exposição Ambiental</p>
+  <p class="section-subtitle">Fatores do ambiente que podem piorar os sintomas respiratórios.</p>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">home</span><h2>Ambiente domiciliar</h2></div>
+    <div class="field"><label>Tabagismo no domicílio</label>
+      <select id="pnTabaco">
+        <option value="nao">Não há fumantes em casa</option>
+        <option value="uma">1 pessoa fuma em casa</option>
+        <option value="mais">2 ou mais fumantes em casa</option>
+      </select></div>
+    <div class="field"><label>Animal de estimação</label>
+      <select id="pnPet">
+        <option value="nao">Não tem pet</option>
+        <option value="nao_quarto">Tem pet, mas não entra no quarto</option>
+        <option value="quarto">Tem pet que entra no quarto / cama</option>
+      </select></div>
+    <div class="field"><label>Mofo ou umidade visível em casa</label>
+      <select id="pnMofo">
+        <option value="nao">Não</option>
+        <option value="sim">Sim</option>
+      </select></div>
+    <div class="field"><label>Capa antiácaro no colchão do paciente</label>
+      <select id="pnAnticaro">
+        <option value="sim">Sim, usa capa antiácaro</option>
+        <option value="nao">Não usa</option>
+        <option value="nao_sei">Não sei</option>
+      </select></div>
+    <div class="field"><label>Aquecimento a lenha ou lareira em casa</label>
+      <select id="pnAquecimento">
+        <option value="nao">Não</option>
+        <option value="sim">Sim</option>
+      </select></div>
+    <div class="field"><label>Tipo de moradia</label>
+      <select id="pnMoradia">
+        <option value="casa">Casa</option>
+        <option value="apto">Apartamento</option>
+        <option value="rural">Área rural</option>
+      </select></div>
+  </div>
+  <button class="btn btn-primary" onclick="nextPnStep(4)"><span class="material-icons-round">arrow_forward</span> Continuar</button>
+</div>
+
+<!-- ===== PNEUMO — ETAPA 4: HISTÓRICO MÉDICO ===== -->
+<div id="pn4" class="screen">
+  <button class="btn-back" onclick="prevPnStep(3)"><span class="material-icons-round">arrow_back</span> Voltar</button>
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step active"></div><div class="progress-step"></div>
+  </div>
+  <div class="step-counter">Etapa <strong>4</strong> de <strong>5</strong></div>
+  <p class="section-title">Histórico Médico</p>
+  <p class="section-subtitle">Internações, diagnósticos anteriores e alergias.</p>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">local_hospital</span><h2>Internações</h2></div>
+    <div class="field"><label>Internações por causa respiratória na vida</label>
+      <select id="pnInternacoes">
+        <option value="nenhuma">Nenhuma</option>
+        <option value="uma">1 internação</option>
+        <option value="duas_tres">2 a 3 internações</option>
+        <option value="mais3">Mais de 3 internações</option>
+      </select></div>
+    <div class="field"><label>Antibiótico oral ou IV nos últimos 30 dias?</label>
+      <select id="pnAtb">
+        <option value="nao">Não</option>
+        <option value="oral">Sim, antibiótico oral</option>
+        <option value="iv">Sim, antibiótico endovenoso (internado)</option>
+      </select></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">medical_information</span><h2>Diagnósticos anteriores</h2></div>
+    <p style="font-size:.78rem;color:var(--text-soft);margin-bottom:10px">Selecione todos que se aplicam:</p>
+    <div class="check-group">
+      <div class="check-item"><input type="checkbox" id="pnDxAsma"><label for="pnDxAsma">Asma</label></div>
+      <div class="check-item"><input type="checkbox" id="pnDxRinite"><label for="pnDxRinite">Rinite alérgica</label></div>
+      <div class="check-item"><input type="checkbox" id="pnDxDermAtop"><label for="pnDxDermAtop">Dermatite atópica / Eczema</label></div>
+      <div class="check-item"><input type="checkbox" id="pnDxDrge"><label for="pnDxDrge">Refluxo gastroesofágico (DRGE)</label></div>
+      <div class="check-item"><input type="checkbox" id="pnDxNenhum"><label for="pnDxNenhum">Nenhum diagnóstico prévio</label></div>
+    </div>
+    <div class="field" style="margin-top:12px"><label>Irmãos com asma ou alergia?</label>
+      <select id="pnIrmao">
+        <option value="nao">Não</option>
+        <option value="sim">Sim</option>
+      </select></div>
+  </div>
+  <button class="btn btn-primary" onclick="nextPnStep(5)"><span class="material-icons-round">arrow_forward</span> Continuar</button>
+</div>
+
+<!-- ===== PNEUMO — ETAPA 5: CONTROLE ATUAL ===== -->
+<div id="pn5" class="screen">
+  <button class="btn-back" onclick="prevPnStep(4)"><span class="material-icons-round">arrow_back</span> Voltar</button>
+  <div class="progress-bar">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step active"></div>
+  </div>
+  <div class="step-counter">Etapa <strong>5</strong> de <strong>5</strong></div>
+  <p class="section-title">Controle Atual</p>
+  <p class="section-subtitle">Medicações em uso e suas expectativas para a consulta.</p>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">medication</span><h2>Medicações em uso</h2></div>
+    <div class="field"><label>Usa medicamento para o pulmão regularmente?</label>
+      <select id="pnMedReg">
+        <option value="nao">Não usa medicação regular</option>
+        <option value="csi">Corticoide inalatório (ex: fluticasona, budesonida)</option>
+        <option value="bd_longa">Broncodilatador de longa duração (LABA)</option>
+        <option value="combinacao">Combinação CSI + LABA</option>
+        <option value="antileuco">Antileucotrieno (ex: Montelucaste)</option>
+        <option value="imuno">Imunoterapia (vacina de alergia)</option>
+      </select></div>
+    <div class="field"><label>Uso de salbutamol (bombinha de resgate)</label>
+      <select id="pnResgate">
+        <option value="nao_usa">Não usa</option>
+        <option value="menos2">Menos de 2 vezes por semana</option>
+        <option value="semanal_freq">2 ou mais vezes por semana</option>
+        <option value="diario">Diariamente</option>
+      </select></div>
+    <div class="field"><label>Como avalia o controle da asma / sintomas?</label>
+      <select id="pnControle">
+        <option value="bem">Bem controlada — sem sintomas frequentes</option>
+        <option value="parcial">Parcialmente controlada — melhora, mas ainda tem sintomas</option>
+        <option value="mal">Mal controlada — sem melhora significativa</option>
+        <option value="sem_asma">Não tenho diagnóstico de asma</option>
+      </select></div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-header"><span class="material-icons-round">chat</span><h2>Suas expectativas</h2></div>
+    <div class="field"><label>O que mais te preocupa?</label>
+      <textarea id="pnPreocupacao" placeholder="Conte livremente..."></textarea></div>
+    <div class="field"><label>Como soube do Dr. Tiago?</label>
+      <select id="pnComoSoube">
+        <option value="indicacao_med">Indicação médica</option>
+        <option value="indicacao_familiar">Familiar ou amigo</option>
+        <option value="google">Google / internet</option>
+        <option value="redes">Redes sociais</option>
+        <option value="outro">Outro</option>
+      </select></div>
+  </div>
+  <button class="btn btn-primary" onclick="verResultadoPn()"><span class="material-icons-round">analytics</span> Ver Resultado</button>
+</div>
+
+<!-- ===== PNEUMO — RESULTADO ===== -->
+<div id="pn-result" class="screen">
+  <div class="result-header">
+    <span class="material-icons-round" style="font-size:32px">air</span>
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-top:8px">Resumo Clínico Pneumo</div>
+    <div style="font-size:.82rem;opacity:.8;margin-top:3px">Pré-consulta · Dr. Tiago Veras</div>
+    <div id="pnControleBadge"></div>
+  </div>
+  <div id="pnResultMetrics"></div>
+  <div id="pnFlags"></div>
+  <button class="btn btn-whatsapp" onclick="enviarPN()">
+    <span class="material-icons-round">send</span> Enviar para o Dr. Tiago
+  </button>
+  <button class="btn btn-outline" onclick="prevPnStep(5)">
+    <span class="material-icons-round">edit</span> Corrigir dados
+  </button>
+</div>
+
+<!-- ===== CALCULADORA ===== -->
+<div id="calc" class="screen">
+  <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
+  <p class="section-title">Calculadora de Doses</p>
+  <p class="section-subtitle">Pneumo pediátrica + Fibrose Cística. Sempre conferir com a prescrição médica.</p>
+  <div class="calc-aviso"><span class="material-icons-round">info</span>
+    <span>Doses para uso <strong>ambulatorial</strong>. Informe peso e idade antes de calcular. Medicamentos <span class="fc-tag">FC</span> são específicos para Fibrose Cística.</span>
+  </div>
+  <div class="calc-header">
+    <div class="field"><label>Nome do paciente</label><input type="text" id="calcNome" placeholder="Ex: Sofia Mendes"></div>
+    <div style="display:flex;gap:10px">
+      <div class="field" style="flex:1"><label>Peso (kg)</label><input type="number" id="calcKg" placeholder="Ex: 25" step="0.1" min="2" max="150" oninput="resetCalc()"></div>
+      <div class="field" style="flex:1"><label>Idade (anos)</label><input type="number" id="calcIdade" placeholder="Ex: 7" step="1" min="0" max="18" oninput="resetCalc()"></div>
+    </div>
+  </div>
+  <div class="field"><label>Medicamento</label>
+    <select id="calcMed" onchange="resetCalc()">
+      <option value="">— Selecione o medicamento —</option>
+      <optgroup label="Broncodilatadores">
+        <option value="salbutamol_neb">Salbutamol (nebulização)</option>
+        <option value="salbutamol_spray">Salbutamol spray + aerocâmara</option>
+      </optgroup>
+      <optgroup label="Corticosteroides">
+        <option value="prednisolona">Prednisolona oral (Predsim)</option>
+        <option value="budesonida">Budesonida nebulização</option>
+        <option value="fluticasona">Fluticasona spray</option>
+        <option value="dexametasona">Dexametasona oral</option>
+      </optgroup>
+      <optgroup label="Antialérgicos / Antiasmáticos">
+        <option value="montelucaste">Montelucaste</option>
+        <option value="loratadina">Loratadina</option>
+        <option value="desloratadina">Desloratadina</option>
+        <option value="hidroxizina">Hidroxizina</option>
+      </optgroup>
+      <optgroup label="Antibióticos">
+        <option value="amoxicilina">Amoxicilina</option>
+        <option value="amoxiclav">Amox + Clavulanato (padrão)</option>
+        <option value="azitromicina">Azitromicina (padrão)</option>
+        <option value="cefalexina">Cefalexina</option>
+      </optgroup>
+      <optgroup label="Analgésicos / Antitérmicos">
+        <option value="paracetamol">Paracetamol</option>
+        <option value="dipirona">Dipirona</option>
+        <option value="ibuprofeno">Ibuprofeno</option>
+      </optgroup>
+      <optgroup label="FC — Fibrose Cística">
+        <option value="tobramicina_fc">Tobramicina inalatória FC</option>
+        <option value="dnase_fc">DNase / Dornase alfa FC</option>
+        <option value="azitro_fc">Azitromicina 3x/semana FC crônico</option>
+        <option value="amoxiclav_fc">Amox-Clavulanato dose alta FC</option>
+      </optgroup>
+      <optgroup label="Emergência">
+        <option value="adrenalina">Adrenalina IM (anafilaxia)</option>
+        <option value="diazepam">Diazepam retal (convulsão)</option>
+      </optgroup>
+    </select>
+  </div>
+  <button class="btn btn-primary" onclick="calcMed()" style="margin-top:8px">
+    <span class="material-icons-round">calculate</span> Calcular
+  </button>
+  <div id="calcResult" style="display:none"></div>
+</div>
+
+<!-- ===== SERVIÇOS ===== -->
+<div id="services" class="screen">
+  <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
+  <p class="section-title">Serviços</p>
+  <p class="section-subtitle">Atendimentos oferecidos pelo Dr. Tiago Veras.</p>
+  <div class="service-card">
+    <div class="service-tag">Consulta Principal</div>
+    <h3>Consulta Pneumo Pediátrica Completa</h3>
+    <p>Avaliação respiratória abrangente com anamnese estruturada, exame físico dirigido e plano terapêutico baseado em protocolos internacionais.</p>
+    <div class="service-card" style="border:none;box-shadow:none;padding:10px 0 0;margin:0">
+      <div class="service-item">Presencial em Joinville · SC</div>
+      <div class="service-item">Telemedicina disponível</div>
+      <div class="service-item">Pré-consulta digital enviada previamente</div>
+    </div>
+  </div>
+  <div class="service-card">
+    <div class="service-tag">Fibrose Cística</div>
+    <h3>Acompanhamento Especializado FC</h3>
+    <p>Seguimento longitudinal de pacientes com fibrose cística conforme protocolo REBRAFC. Avaliação multidimensional: função pulmonar, nutrição, microbiologia, moduladores CFTR e qualidade de vida.</p>
+    <div style="margin-top:10px">
+      <div class="service-item">Protocolo SBPT / CFF 2024</div>
+      <div class="service-item">Integrado ao Registro Brasileiro FC (REBRAFC)</div>
+      <div class="service-item">6 a 8 consultas anuais para pacientes FC</div>
+    </div>
+  </div>
+  <div class="service-card">
+    <div class="service-tag">Diagnóstico</div>
+    <h3>Espirometria Pediátrica</h3>
+    <p>Avaliação da função pulmonar com interpretação especializada e comparação com valores de referência internacionais (GLI 2012).</p>
+    <div style="margin-top:10px">
+      <div class="service-item">Indicada a partir de 5 anos</div>
+      <div class="service-item">Laudos com z-score e % predito</div>
+    </div>
+  </div>
+  <div class="service-card">
+    <div class="service-tag">Especialidade</div>
+    <h3>Segunda Opinião / Laudo Especializado</h3>
+    <p>Análise de exames e história clínica para casos de dúvida diagnóstica ou complexidade terapêutica em pneumopediatria.</p>
+  </div>
+  <div class="footer-info">Dúvidas? Entre em contato pelo WhatsApp.</div>
+</div>
+
+<!-- ===== NOSSA ABORDAGEM ===== -->
+<div id="abordagem" class="screen">
+  <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
+  <div class="pilar-destaque">
+    <h2>Medicina Respiratória de Excelência</h2>
+    <p>Combinando protocolo internacional, pesquisa clínica ativa e cuidado humanizado para cada paciente.</p>
+  </div>
+  <div class="pilar-card">
+    <div class="pilar-icon p1"><span class="material-icons-round">search</span></div>
+    <div><h3>Diagnóstico Preciso</h3><p>Anamnese estruturada, espirometria interpretada com critérios GLI e decisão clínica baseada em evidências — não em protocolos genéricos.</p></div>
+  </div>
+  <div class="pilar-card">
+    <div class="pilar-icon p2"><span class="material-icons-round">biotech</span></div>
+    <div><h3>Protocolo FC Internacional</h3><p>Seguimento conforme diretrizes CFF e ECFS. Avaliação periódica de VEF1%, microbiologia, estado nutricional e moduladores CFTR.</p></div>
+  </div>
+  <div class="pilar-card">
+    <div class="pilar-icon p3"><span class="material-icons-round">family_restroom</span></div>
+    <div><h3>Educação Familiar</h3><p>Família que entende a doença adere melhor ao tratamento. Cada consulta inclui orientação dirigida para o responsável.</p></div>
+  </div>
+  <div class="pilar-card">
+    <div class="pilar-icon p4"><span class="material-icons-round">groups</span></div>
+    <div><h3>Integração Multidisciplinar</h3><p>Articulação com fisioterapia respiratória, nutrição pediátrica e equipe de referência FC para cuidado completo.</p></div>
+  </div>
+  <div class="pilar-card">
+    <div class="pilar-icon p5"><span class="material-icons-round">science</span></div>
+    <div><h3>Pesquisa Clínica Ativa</h3><p>Participação no REBRAFC e publicações científicas. Pacientes se beneficiam de protocolos atualizados em tempo real com a literatura.</p></div>
+  </div>
+  <div class="footer-info">INOVAMED · inovamed.pro</div>
+</div>
+
+<!-- ===== ARTIGOS ===== -->
+<div id="articles" class="screen">
+  <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
+  <p class="section-title">Artigos</p>
+  <p class="section-subtitle">Conteúdo sobre saúde respiratória pediátrica e fibrose cística.</p>
+  <div id="articlesContainer"><div class="articles-loading" style="text-align:center;padding:30px;color:var(--text-soft)">Carregando artigos...</div></div>
+</div>
+
+<!-- ===== CONTATO ===== -->
+<div id="contact" class="screen">
+  <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
+  <p class="section-title">Contato</p>
+  <p class="section-subtitle">Fale com o consultório do Dr. Tiago Veras.</p>
+  <a class="contact-item" href="https://wa.me/5547XXXXXXXX" target="_blank">
+    <span class="material-icons-round" style="color:#25D366">chat</span>
+    <div><div class="label">WhatsApp</div><div class="detail">(47) 9 XXXX-XXXX</div></div>
+  </a>
+  <a class="contact-item" id="calendarBtn" href="SUA_URL_CALENDAR" target="_blank">
+    <span class="material-icons-round">calendar_today</span>
+    <div><div class="label">Agendar Consulta Online</div><div class="detail">Google Calendar · Presencial e Telemedicina</div></div>
+  </a>
+  <a class="contact-item" href="https://maps.google.com/?q=Joinville+SC" target="_blank">
+    <span class="material-icons-round">place</span>
+    <div><div class="label">Localização</div><div class="detail">Joinville · SC</div></div>
+  </a>
+  <div style="margin-top:16px;background:var(--white);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-sm)">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114885.36!2d-48.845!3d-26.305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94de8bec396fdf87%3A0x43d96f7c2d64a91a!2sJoinville%2C%20SC!5e0!3m2!1spt-BR!2sbr!4v1" width="100%" height="200" style="border:0;display:block" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+  <div class="footer-info">INOVAMED · inovamed.pro<br>Tecnologia a serviço da medicina de alta performance<br>Dr. Mbula Luzingu Barros · CRM-SC 8512</div>
+</div>
+
+</div><!-- fim .app -->
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bottom-nav">
+  <div class="nav-item active" id="nav-home" onclick="navTo('home')">
+    <span class="material-icons-round">home</span>Início
+  </div>
+  <div class="nav-item" id="nav-selector" onclick="navTo('selector')">
+    <span class="material-icons-round">assignment</span>Pré-Consulta
+  </div>
+  <div class="nav-item" id="nav-calc" onclick="navTo('calc')">
+    <span class="material-icons-round">medication</span>Doses
+  </div>
+  <div class="nav-item" id="nav-articles" onclick="navTo('articles')">
+    <span class="material-icons-round">article</span>Artigos
+  </div>
+  <div class="nav-item" id="nav-contact" onclick="navTo('contact')">
+    <span class="material-icons-round">phone</span>Contato
+  </div>
+</nav>
+<div class="toast" id="toast"></div>
+<script>
+// ══════════════════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════════════════
+const CONFIG = {
+  doctorName: 'Dr. Tiago Neves Veras',
+  crm: 'CRM-SC 12556',
+  specialty: 'Pneumopediatra',
+  whatsappNumber: '5547XXXXXXXXX',
+  appsScriptURL: 'SUA_URL_APPS_SCRIPT',
+  calendarURL: 'SUA_URL_CALENDAR'
+};
+
+// ══════════════════════════════════════════════════════
+// NAVEGAÇÃO
+// ══════════════════════════════════════════════════════
+const NAV_SCREENS = ['home','selector','fc1','fc2','fc3','fc4','fc5','fc-result','pn1','pn2','pn3','pn4','pn5','pn-result','calc','services','abordagem','articles','contact'];
+const NAV_PILLS = {home:'nav-home',selector:'nav-selector',calc:'nav-calc',articles:'nav-articles',contact:'nav-contact'};
+
+function navTo(id) {
+  NAV_SCREENS.forEach(s => {
+    const el = document.getElementById(s);
+    if(el) { el.classList.remove('active'); el.style.display=''; }
+  });
+  const target = document.getElementById(id);
+  if(target) target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  Object.keys(NAV_PILLS).forEach(k => {
+    const pill = document.getElementById(NAV_PILLS[k]);
+    if(pill) pill.classList.toggle('active', k === id || (k==='selector' && ['fc1','fc2','fc3','fc4','fc5','fc-result','pn1','pn2','pn3','pn4','pn5','pn-result'].includes(id)));
+  });
+  if(id==='articles') loadArticles();
+}
+
+function selectPath(path) {
+  if(path === 'fc') { currentFcStep=1; updateFcProgress(); navTo('fc1'); }
+  else              { currentPnStep=1; updatePnProgress(); navTo('pn1'); }
+}
+
+// ══════════════════════════════════════════════════════
+// FC — NAVEGAÇÃO ENTRE ETAPAS
+// ══════════════════════════════════════════════════════
+let currentFcStep = 1;
+
+function nextFcStep(to) {
+  if(currentFcStep===1 && !document.getElementById('fcNome').value.trim()) { showToast('⚠️ Preencha o nome do paciente'); return; }
+  animStep('fc'+currentFcStep,'fc'+to,true);
+  currentFcStep=to; updateFcProgress();
+}
+function prevFcStep(to) {
+  if(to==='selector') { navTo('selector'); return; }
+  animStep('fc'+currentFcStep,'fc'+to,false);
+  currentFcStep=to; updateFcProgress();
+}
+function updateFcProgress() {
+  for(let i=1;i<=5;i++) {
+    const el=document.getElementById('fcProg'+i);
+    if(el) el.className='progress-step'+(i<currentFcStep?' done':i===currentFcStep?' active':'');
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// PNEUMO — NAVEGAÇÃO ENTRE ETAPAS
+// ══════════════════════════════════════════════════════
+let currentPnStep = 1;
+
+function nextPnStep(to) {
+  if(currentPnStep===1 && !document.getElementById('pnNome').value.trim()) { showToast('⚠️ Preencha o nome do paciente'); return; }
+  animStep('pn'+currentPnStep,'pn'+to,true);
+  currentPnStep=to; updatePnProgress();
+}
+function prevPnStep(to) {
+  if(to==='selector') { navTo('selector'); return; }
+  animStep('pn'+currentPnStep,'pn'+to,false);
+  currentPnStep=to; updatePnProgress();
+}
+function updatePnProgress() {
+  for(let i=1;i<=5;i++) {
+    const el=document.getElementById('pnProg'+i);
+    if(el) el.className='progress-step'+(i<currentPnStep?' done':i===currentPnStep?' active':'');
+  }
+}
+
+function animStep(fromId,toId,forward) {
+  const f=document.getElementById(fromId), t=document.getElementById(toId);
+  if(!f||!t) return;
+  f.style.opacity='0'; f.style.transform='translateX('+(forward?'-20px':'20px')+')';
+  setTimeout(()=>{
+    f.classList.remove('active'); f.style.opacity=''; f.style.transform='';
+    t.style.display='block'; t.style.opacity='0'; t.style.transform='translateX('+(forward?'20px':'-20px')+')';
+    void t.offsetWidth;
+    t.style.transition='opacity .3s,transform .3s'; t.style.opacity='1'; t.style.transform='translateX(0)';
+    t.classList.add('active');
+    setTimeout(()=>t.style.transition='',300);
+    window.scrollTo({top:0,behavior:'smooth'});
+  },200);
+}
+
+// ══════════════════════════════════════════════════════
+// FC — RISCO E RESULTADO
+// ══════════════════════════════════════════════════════
+function calcRiscoFC() {
+  const vef1=parseFloat(document.getElementById('fcVef1').value)||(-1);
+  const exacIv=parseInt(document.getElementById('fcExacIvEp').value)||0;
+  const paMuc=document.getElementById('fcPaMuc').checked;
+  const burk=document.getElementById('fcBurk').checked;
+  const peso=parseFloat(document.getElementById('fcPeso').value)||0;
+  const alt=parseFloat(document.getElementById('fcAltura').value)||0;
+  let score=0;
+  if(vef1>=0&&vef1<35) score+=3; else if(vef1>=35&&vef1<50) score+=2; else if(vef1>=50&&vef1<70) score+=1;
+  if(exacIv>=3) score+=2; else if(exacIv>=1) score+=1;
+  if(paMuc||burk) score+=2;
+  if(peso>0&&alt>0){const imc=peso/((alt/100)**2);if(imc<16) score+=2; else if(imc<18.5) score+=1;}
+  if(score===0) return {nivel:'Estável',cor:'#27ae60',classe:'ok',icone:'check_circle'};
+  if(score<=2)  return {nivel:'Atenção',cor:'#f39c12',classe:'warn',icone:'warning'};
+  return {nivel:'Alto Risco',cor:'#e74c3c',classe:'alert',icone:'error'};
+}
+
+function verResultadoFC() {
+  const risco=calcRiscoFC();
+  // Badge
+  document.getElementById('fcRiscoBadge').innerHTML=
+    `<div class="risk-badge ${risco.classe}"><span class="material-icons-round">${risco.icone}</span>${risco.nivel}</div>`;
+  // Métricas
+  const vef1=document.getElementById('fcVef1').value||'—';
+  const cvf=document.getElementById('fcCvf').value||'—';
+  const peso=document.getElementById('fcPeso').value||'—';
+  const alt=document.getElementById('fcAltura').value||'—';
+  let imc='—';
+  if(peso!=='—'&&alt!=='—'){const p=parseFloat(peso),h=parseFloat(alt)/100;imc=(p/(h*h)).toFixed(1);}
+  const mod=document.getElementById('fcModulador').options[document.getElementById('fcModulador').selectedIndex].text;
+  const exacOral=document.getElementById('fcExacOralEp').value||'0';
+  const exacIv=document.getElementById('fcExacIvEp').value||'0';
+  document.getElementById('fcResultMetrics').innerHTML=
+    metric('monitor_heart','VEF1%',vef1+'%')+
+    metric('air','CVF%',cvf+'%')+
+    metric('monitor_weight','Peso / Altura / IMC',`${peso}kg · ${alt}cm · IMC ${imc}`)+
+    metric('medication','Modulador CFTR',mod)+
+    metric('sick','Exacerbações (últimos 3 meses)',`Oral: ${exacOral} ep. · IV: ${exacIv} ep.`);
+  // Flags clínicas
+  let flags='';
+  if(document.getElementById('fcPaMuc').checked) flags+=flag('Pseudomonas mucóide identificada — avaliar ciclo de erradicação / ATB crônico.');
+  if(document.getElementById('fcBurk').checked)  flags+=flag('Burkholderia cepacia complex — encaminhar a centro de referência FC se necessário.');
+  if(document.getElementById('fcMrsa').checked)  flags+=flag('MRSA — avaliar esquema descolonização.');
+  if(parseInt(exacIv)>=2) flags+=flag('≥2 exacerbações IV em 3 meses — revisar colonização e plano de manutenção.');
+  const vef=parseFloat(document.getElementById('fcVef1').value)||999;
+  if(vef<50&&vef>0) flags+=flag('VEF1 abaixo de 50% — avaliar indicação de transplante pulmonar.');
+  document.getElementById('fcFlags').innerHTML=flags;
+  navTo('fc-result');
+}
+
+function metric(icone,label,val){
+  return `<div class="result-metric"><span class="material-icons-round">${icone}</span><div><div class="rm-label">${label}</div><div class="rm-value">${val}</div></div></div>`;
+}
+function flag(txt){
+  return `<div class="fc-flag"><span class="material-icons-round">warning</span><span>${txt}</span></div>`;
+}
+
+function enviarFC() {
+  const nome=document.getElementById('fcNome').value;
+  const resp=document.getElementById('fcResponsavel').value;
+  const tel=document.getElementById('fcTelefone').value;
+  const email=document.getElementById('fcEmail').value;
+  const genotipo=document.getElementById('fcGenotipo').value||'Não informado';
+  const mod=document.getElementById('fcModulador').value;
+  const modLabel=document.getElementById('fcModulador').options[document.getElementById('fcModulador').selectedIndex].text;
+  const pancreas=document.getElementById('fcPancreas').options[document.getElementById('fcPancreas').selectedIndex].text;
+  const vef1=document.getElementById('fcVef1').value||'—';
+  const cvf=document.getElementById('fcCvf').value||'—';
+  const exacOral=document.getElementById('fcExacOralEp').value||'0';
+  const exacIv=document.getElementById('fcExacIvEp').value||'0';
+  const exacIvDias=document.getElementById('fcExacIvDias').value||'0';
+  const peso=document.getElementById('fcPeso').value||'—';
+  const alt=document.getElementById('fcAltura').value||'—';
+  const qv=document.getElementById('fcQv').value;
+  const preoc=document.getElementById('fcPreocupacao').value;
+  const pergs=document.getElementById('fcPerguntas').value;
+  const primeira=document.getElementById('fcPrimeira').value;
+  const risco=calcRiscoFC();
+
+  // Microbiologia
+  const microbio=[];
+  if(document.getElementById('fcPaNoMuc').checked) microbio.push('PA não-mucóide');
+  if(document.getElementById('fcPaMuc').checked)   microbio.push('PA mucóide ⚠️');
+  if(document.getElementById('fcMrsa').checked)    microbio.push('MRSA ⚠️');
+  if(document.getElementById('fcBurk').checked)    microbio.push('Burkholderia ⚠️');
+  if(document.getElementById('fcSteno').checked)   microbio.push('Stenotrophomonas');
+  if(document.getElementById('fcSemCult').checked) microbio.push('Sem colônia patogênica');
+
+  const waTxt=`🫁 *PRÉ-CONSULTA FC — ${CONFIG.doctorName}*\n━━━━━━━━━━━━━━━━━━━━━\n👤 *${nome}*\nResponsável: ${resp}${primeira==='sim'?' · ⭐ PRIMEIRA CONSULTA':''}\n\n🔬 *DIAGNÓSTICO*\n• Genótipo: ${genotipo}\n• Modulador: ${modLabel}\n• Pâncreas: ${pancreas}\n\n🫁 *FUNÇÃO PULMONAR*\n• VEF1%: ${vef1}  ·  CVF%: ${cvf}\n• Exac. oral: ${exacOral} ep.  ·  Exac. IV: ${exacIv} ep. (${exacIvDias} dias)\n\n🦠 *MICROBIOLOGIA*\n• ${microbio.length?microbio.join(' · '):'Não informada'}\n\n⚖️ *NUTRIÇÃO*\n• Peso: ${peso}kg  ·  Altura: ${alt}cm\n\n💊 *ADERÊNCIA*\n• Modulador: ${document.getElementById('fcAdhMod').options[document.getElementById('fcAdhMod').selectedIndex].text}\n• Fisio: ${document.getElementById('fcFisio').options[document.getElementById('fcFisio').selectedIndex].text}\n• Nebuliz: ${document.getElementById('fcNebuliz').options[document.getElementById('fcNebuliz').selectedIndex].text}\n\n⭐ *QV: ${qv}/10  ·  RISCO: ${risco.nivel}*\n━━━━━━━━━━━━━━━━━━━━━\n📞 ${tel}  ✉️ ${email}${preoc?'\n❓ '+preoc:''}${pergs?'\n💬 '+pergs:''}\n_INOVAMED · inovamed.pro_`;
+
+  const payload={caminho:'FC',timestamp:new Date().toISOString(),nome_paciente:nome,responsavel:resp,telefone:tel,email:email,primeira_consulta:primeira,genotipo_texto:genotipo,modulador:mod,status_pancreatico:document.getElementById('fcPancreas').value,vef1_pred:vef1,cvf_pred:cvf,exac_oral_ep:exacOral,exac_iv_ep:exacIv,exac_iv_dias:exacIvDias,pa_mucoide:document.getElementById('fcPaMuc').checked?1:0,pa_nao_muc:document.getElementById('fcPaNoMuc').checked?1:0,sa_resistente:document.getElementById('fcMrsa').checked?1:0,burkholderia:document.getElementById('fcBurk').checked?1:0,stenotropho:document.getElementById('fcSteno').checked?1:0,peso:peso,estatura:alt,adh_modulator:document.getElementById('fcAdhMod').value,adh_fisio:document.getElementById('fcFisio').value,adh_nebuliz:document.getElementById('fcNebuliz').value,qv_score:qv,risco_nivel:risco.nivel,preocupacao:preoc,perguntas_medico:pergs};
+
+  gravarNaPlanilha(payload);
+  document.getElementById('sendingOverlay').classList.add('show');
+  setTimeout(()=>{
+    document.getElementById('sendingOverlay').classList.remove('show');
+    window.open('https://wa.me/'+CONFIG.whatsappNumber+'?text='+encodeURIComponent(waTxt),'_blank');
+    navTo('home');
+  },1800);
+}
+
+// ══════════════════════════════════════════════════════
+// PNEUMO — CONTROLE E RESULTADO
+// ══════════════════════════════════════════════════════
+function calcControlePn() {
+  const resgate=document.getElementById('pnResgate').value;
+  const psVisitas=document.getElementById('pnPsVisitas').value;
+  const controle=document.getElementById('pnControle').value;
+  if(controle==='sem_asma') return {nivel:'Sem diagnóstico de Asma',classe:'info',icone:'info'};
+  if(controle==='mal'||resgate==='diario'||psVisitas==='mais4') return {nivel:'Mal Controlada',classe:'alert',icone:'error'};
+  if(controle==='parcial'||resgate==='semanal_freq'||psVisitas==='tres4') return {nivel:'Parcialmente Controlada',classe:'warn',icone:'warning'};
+  return {nivel:'Bem Controlada',classe:'ok',icone:'check_circle'};
+}
+
+function verResultadoPn() {
+  const ctrl=calcControlePn();
+  document.getElementById('pnControleBadge').innerHTML=
+    `<div class="control-badge ${ctrl.classe}"><span class="material-icons-round">${ctrl.icone}</span>${ctrl.nivel}</div>`;
+  // Gatilhos ambientais
+  const gatilhos=[];
+  if(document.getElementById('pnTabaco').value!=='nao') gatilhos.push('Tabagismo passivo domiciliar');
+  if(document.getElementById('pnPet').value==='quarto')  gatilhos.push('Pet no quarto — alérgeno direto');
+  if(document.getElementById('pnMofo').value==='sim')    gatilhos.push('Mofo / umidade em casa');
+  if(document.getElementById('pnAnticaro').value!=='sim') gatilhos.push('Sem capa antiácaro no colchão');
+  if(document.getElementById('pnAquecimento').value==='sim') gatilhos.push('Aquecimento a lenha / lareira');
+  const nome=document.getElementById('pnNome').value;
+  const idade=document.getElementById('pnIdade').value;
+  document.getElementById('pnResultMetrics').innerHTML=
+    metric('person','Paciente',`${nome} · ${idade} anos`)+
+    metric('medication','Medicação regular',document.getElementById('pnMedReg').options[document.getElementById('pnMedReg').selectedIndex].text)+
+    metric('air','Salbutamol resgate',document.getElementById('pnResgate').options[document.getElementById('pnResgate').selectedIndex].text)+
+    metric('local_hospital','Visitas ao PS (12 meses)',document.getElementById('pnPsVisitas').options[document.getElementById('pnPsVisitas').selectedIndex].text);
+  document.getElementById('pnFlags').innerHTML=gatilhos.map(g=>flag('Gatilho ambiental: '+g)).join('');
+  navTo('pn-result');
+}
+
+function enviarPN() {
+  const nome=document.getElementById('pnNome').value;
+  const resp=document.getElementById('pnResponsavel').value;
+  const tel=document.getElementById('pnTelefone').value;
+  const email=document.getElementById('pnEmail').value;
+  const ctrl=calcControlePn();
+  // Queixa
+  const queixas=[];
+  if(document.getElementById('pnQTosse').checked) queixas.push('Tosse');
+  if(document.getElementById('pnQSib').checked)   queixas.push('Sibilância');
+  if(document.getElementById('pnQFalta').checked) queixas.push('Falta de ar');
+  if(document.getElementById('pnQPneumo').checked) queixas.push('Pneumonia de repetição');
+  if(document.getElementById('pnQRonco').checked) queixas.push('Ronco/apneia');
+  if(document.getElementById('pnQAsma').checked)  queixas.push('Asma confirmada');
+  if(document.getElementById('pnQOutro').checked) queixas.push('Outro');
+  // Ambiente
+  const amb=[];
+  if(document.getElementById('pnTabaco').value!=='nao') amb.push('Tabagismo passivo');
+  if(document.getElementById('pnPet').value==='quarto')  amb.push('Pet no quarto');
+  if(document.getElementById('pnMofo').value==='sim')    amb.push('Mofo');
+  if(document.getElementById('pnAnticaro').value!=='sim') amb.push('Sem antiácaro');
+  if(document.getElementById('pnAquecimento').value==='sim') amb.push('Lenha/lareira');
+  // Histórico
+  const hx=[];
+  if(document.getElementById('pnDxAsma').checked)     hx.push('Asma');
+  if(document.getElementById('pnDxRinite').checked)   hx.push('Rinite');
+  if(document.getElementById('pnDxDermAtop').checked) hx.push('Dermatite atópica');
+  if(document.getElementById('pnDxDrge').checked)     hx.push('DRGE');
+  if(document.getElementById('pnDxNenhum').checked)   hx.push('Sem diagnóstico prévio');
+
+  const waTxt=`🌬️ *PRÉ-CONSULTA PNEUMO — ${CONFIG.doctorName}*\n━━━━━━━━━━━━━━━━━━━━━\n👤 *${nome}* · ${document.getElementById('pnIdade').value} anos\nResponsável: ${resp}${document.getElementById('pnPrimeira').value==='sim'?' · ⭐ PRIMEIRA CONSULTA':''}\n\n🩺 *QUEIXA*\n• ${queixas.length?queixas.join(' · '):'Não especificada'}\n• Duração: ${document.getElementById('pnDuracao').options[document.getElementById('pnDuracao').selectedIndex].text}\n\n🫁 *SINTOMAS*\n• Tosse: ${document.getElementById('pnTosse').options[document.getElementById('pnTosse').selectedIndex].text}\n• Sibilância: ${document.getElementById('pnSib').options[document.getElementById('pnSib').selectedIndex].text}\n• Padrão: ${document.getElementById('pnPadrao').options[document.getElementById('pnPadrao').selectedIndex].text}\n• PS (12m): ${document.getElementById('pnPsVisitas').options[document.getElementById('pnPsVisitas').selectedIndex].text}\n\n🏠 *AMBIENTE*\n• ${amb.length?amb.join(' · '):'Sem gatilhos identificados'}\n\n📋 *HISTÓRICO*\n• ${hx.length?hx.join(' · '):'Sem diagnóstico prévio'}\n• ATB recente: ${document.getElementById('pnAtb').options[document.getElementById('pnAtb').selectedIndex].text}\n• Internações: ${document.getElementById('pnInternacoes').options[document.getElementById('pnInternacoes').selectedIndex].text}\n\n💊 *CONTROLE*\n• Medicação: ${document.getElementById('pnMedReg').options[document.getElementById('pnMedReg').selectedIndex].text}\n• Resgate: ${document.getElementById('pnResgate').options[document.getElementById('pnResgate').selectedIndex].text}\n\n⭐ *Controle: ${ctrl.nivel}*\n━━━━━━━━━━━━━━━━━━━━━\n📞 ${tel}  ✉️ ${email}${document.getElementById('pnPreocupacao').value?'\n❓ '+document.getElementById('pnPreocupacao').value:''}\n_INOVAMED · inovamed.pro_`;
+
+  const payload={caminho:'PNEUMO',timestamp:new Date().toISOString(),nome_paciente:nome,responsavel:resp,telefone:tel,email:email,primeira_consulta:document.getElementById('pnPrimeira').value,queixa:queixas.join(';'),duracao:document.getElementById('pnDuracao').value,tosse:document.getElementById('pnTosse').value,sibilancia:document.getElementById('pnSib').value,padrao:document.getElementById('pnPadrao').value,febre:document.getElementById('pnFebre').value,ps_visitas:document.getElementById('pnPsVisitas').value,tabaco:document.getElementById('pnTabaco').value,pet:document.getElementById('pnPet').value,mofo:document.getElementById('pnMofo').value,anticaro:document.getElementById('pnAnticaro').value,internacoes:document.getElementById('pnInternacoes').value,medic_regular:document.getElementById('pnMedReg').value,resgate:document.getElementById('pnResgate').value,controle_asma:document.getElementById('pnControle').value,controle_nivel:ctrl.nivel,preocupacao:document.getElementById('pnPreocupacao').value,como_soube:document.getElementById('pnComoSoube').value};
+
+  gravarNaPlanilha(payload);
+  document.getElementById('sendingOverlay').classList.add('show');
+  setTimeout(()=>{
+    document.getElementById('sendingOverlay').classList.remove('show');
+    window.open('https://wa.me/'+CONFIG.whatsappNumber+'?text='+encodeURIComponent(waTxt),'_blank');
+    navTo('home');
+  },1800);
+}
+
+// ══════════════════════════════════════════════════════
+// CALCULADORA
+// ══════════════════════════════════════════════════════
+function r(v){return Math.round(v);}
+function r1(v){return Math.round(v*10)/10;}
+function r5(v){return Math.round(v*2)/2;}
+
+const MEDS = {
+  paracetamol:{nome:'Paracetamol',cat:'Analgésico/Antitérmico',apres:'Gotas 200mg/ml · Susp 32mg/ml',
+    calc(kg){const dMin=r(kg*10),dMax=r(Math.min(kg*15,1000));const t=dMax>=1000;
+    return{dose:`${dMin}–${dMax} mg/dose`,teto:t,
+    vols:[{l:'Gotas 200mg/ml',v:`${r(dMin/10)}–${r(dMax/10)} gotas`,nota:'1 gota = 10mg'},
+          {l:'Susp 32mg/ml',v:`${r5(dMin/32)}–${r5(dMax/32)} ml`,nota:'usar seringa dosadora'}],
+    intervalos:[{freq:'De 6 em 6h',detalhe:'máx 5 doses/dia'}],obs:t?'⚠️ Teto de 1g/dose':''}}},
+  dipirona:{nome:'Dipirona',cat:'Analgésico/Antitérmico',apres:'Gotas 500mg/ml · Susp 50mg/ml',
+    calc(kg){const dMin=r(kg*10),dMax=r(Math.min(kg*25,1000));const t=dMax>=1000;
+    return{dose:`${dMin}–${dMax} mg/dose`,teto:t,
+    vols:[{l:'Gotas 500mg/ml',v:`${r(dMin/25)}–${r(dMax/25)} gotas`,nota:'1 gota = 25mg'},
+          {l:'Susp 50mg/ml',v:`${r5(dMin/50)}–${r5(dMax/50)} ml`,nota:''}],
+    intervalos:[{freq:'De 6 em 6h',detalhe:'máx 4 doses/dia'}],obs:t?'⚠️ Teto atingido':''}}},
+  ibuprofeno:{nome:'Ibuprofeno',cat:'Anti-inflamatório/Antitérmico',apres:'Susp 50mg/ml · Susp 100mg/ml',
+    calc(kg){const d=r(Math.min(kg*10,400));const t=d>=400;
+    return{dose:`${d} mg/dose`,teto:t,
+    vols:[{l:'Susp 50mg/ml',v:`${r5(d/50)} ml`,nota:''},{l:'Susp 100mg/ml',v:`${r5(d/100)} ml`,nota:''}],
+    intervalos:[{freq:'De 8 em 8h',detalhe:'sempre após refeição'}],obs:t?'⚠️ Teto de 400mg/dose':''}}},
+  salbutamol_neb:{nome:'Salbutamol (nebulização)',cat:'Broncodilatador',apres:'Sol 5mg/ml',
+    calc(kg){const d=r1(Math.max(1.25,Math.min(kg*0.15,5)));const t=d>=5;
+    return{dose:`${d} mg/nebulização`,teto:t,
+    vols:[{l:'Sol 5mg/ml',v:`${r5(d/5)} ml`,nota:'diluir em SF 0,9% até 3–4ml'}],
+    intervalos:[{freq:'Crise',detalhe:'a cada 20 min · reavaliar após 3 ciclos'},{freq:'Manutenção',detalhe:'6/6h ou 8/8h conforme prescrito'}],
+    obs:t?'⚠️ Teto de 5mg/dose':'Reavaliar resposta após cada nebulização'}}},
+  salbutamol_spray:{nome:'Salbutamol spray + aerocâmara',cat:'Broncodilatador',apres:'100mcg/jato',
+    calc(kg){return{dose:'2–10 jatos/dose (por gravidade)',teto:false,
+    vols:[{l:'Crise leve',v:'2–4 jatos',nota:'1 jato de cada vez · 5-6 respirações/jato'},
+          {l:'Crise moderada',v:'4–6 jatos',nota:'agitar o spray antes de cada jato'},
+          {l:'Crise grave',v:'8–10 jatos',nota:'SAMU 192 se não melhorar'}],
+    intervalos:[{freq:'Crise',detalhe:'a cada 20 min · máx 3 ciclos sem avaliação médica'}],
+    obs:'Sempre usar aerocâmara'}}},
+  prednisolona:{nome:'Prednisolona oral',cat:'Corticosteroide',apres:'Sol 3mg/ml (Predsim)',
+    calc(kg){const mn=r(kg*1),mx=r(Math.min(kg*2,60));const t=mx>=60;
+    return{dose:`${mn}–${mx} mg/dia (dose única)`,teto:t,
+    vols:[{l:'Sol 3mg/ml',v:`${r5(mn/3)}–${r5(mx/3)} ml/dia`,nota:'tomar pela manhã'}],
+    intervalos:[{freq:'1x ao dia (manhã)',detalhe:'5 dias · não interromper abruptamente'}],
+    obs:t?'⚠️ Teto de 60mg/dia':'Dar sempre pela manhã'}}},
+  budesonida:{nome:'Budesonida nebulização',cat:'CSI nebulização',apres:'Susp 0,25mg/ml e 0,5mg/ml',
+    calc(kg){return{dose:'0,25–0,5 mg/nebulização (dose fixa)',teto:false,
+    vols:[{l:'Susp 0,25mg/ml',v:'1 ml + SF até 3ml',nota:'dose 0,25mg'},
+          {l:'Susp 0,5mg/ml',v:'0,5 ml + SF até 3ml',nota:'dose 0,5mg'}],
+    intervalos:[{freq:'12/12h',detalhe:'uso regular · não apenas na crise'}],
+    obs:'⚠️ Enxaguar boca após uso'}}},
+  fluticasona:{nome:'Fluticasona spray',cat:'CSI inalatório',apres:'44 / 110 / 220 mcg/jato',
+    calc(kg,a){return{dose:'Dose conforme etapa terapêutica',teto:false,
+    vols:[{l:'Dose baixa',v:'44–88 mcg/dia (1–2 jatos 44mcg 2x/dia)',nota:'asma leve'},
+          {l:'Dose média',v:'220–440 mcg/dia (1–2 jatos 110mcg 2x/dia)',nota:'asma moderada'},
+          {l:'Dose alta',v:'440–880 mcg/dia (2 jatos 220mcg 2x/dia)',nota:'asma grave'}],
+    intervalos:[{freq:'2x ao dia',detalhe:'uso regular · não interromper na ausência de sintomas'}],
+    obs:'Enxaguar boca após uso · Sempre com espaçador'}}},
+  montelucaste:{nome:'Montelucaste',cat:'Antileucotrieno',apres:'Grânulos 4mg · Comp 5mg (mastigável) · Comp 10mg',
+    calc(kg,a){const aa=parseFloat(a)||0;
+    if(aa<1) return{dose:'Não indicado abaixo de 1 ano',teto:false,vols:[],intervalos:[],obs:''};
+    const opt=aa<6?'Grânulos 4mg (1 envelope)':aa<15?'Comprimido mastigável 5mg':'Comprimido 10mg';
+    return{dose:aa<6?'4mg/dia':aa<15?'5mg/dia':'10mg/dia',teto:false,
+    vols:[{l:opt,v:'1 unidade ao dia',nota:'sempre à noite · pode misturar grânulos ao alimento'}],
+    intervalos:[{freq:'1x ao dia (noturno)',detalhe:'uso contínuo'}],
+    obs:'Não suspender abruptamente'}}},
+  loratadina:{nome:'Loratadina',cat:'Anti-histamínico',apres:'Xarope 1mg/ml',
+    calc(kg,a){const aa=parseFloat(a)||0;if(aa<2) return{dose:'Não indicado <2 anos',teto:false,vols:[],intervalos:[],obs:''};
+    const d=aa<6?5:10;return{dose:`${d}mg/dia`,teto:false,
+    vols:[{l:'Xarope 1mg/ml',v:`${d}ml`,nota:''}],
+    intervalos:[{freq:'1x ao dia',detalhe:'preferencialmente à noite'}],obs:'Máx 10mg/dia'}}},
+  desloratadina:{nome:'Desloratadina',cat:'Anti-histamínico',apres:'Xarope 0,5mg/ml',
+    calc(kg,a){const aa=parseFloat(a)||0;if(aa<0.5) return{dose:'Não indicado <6 meses',teto:false,vols:[],intervalos:[],obs:''};
+    const d=aa<1?1:aa<6?1.25:aa<12?2.5:5;return{dose:`${d}mg/dia`,teto:false,
+    vols:[{l:'Xarope 0,5mg/ml',v:`${r5(d/0.5)}ml`,nota:''}],
+    intervalos:[{freq:'1x ao dia',detalhe:''}],obs:'Máx 5mg/dia'}}},
+  hidroxizina:{nome:'Hidroxizina',cat:'Anti-histamínico/Sedativo',apres:'Xarope 2mg/ml',
+    calc(kg){const mn=r(kg),mx=r(Math.min(kg*2,150));const d=r(Math.min(mx/3,50));
+    return{dose:`${r(mn/3)}–${d}mg/dose`,teto:d>=50,
+    vols:[{l:'Xarope 2mg/ml',v:`${r5(r(mn/3)/2)}–${r5(d/2)}ml`,nota:''}],
+    intervalos:[{freq:'8/8h',detalhe:'máx 3 doses/dia'}],obs:'Pode causar sonolência'}}},
+  amoxicilina:{nome:'Amoxicilina',cat:'Antibiótico',apres:'Susp 250mg/5ml e 400mg/5ml',
+    calc(kg){const mn=r(kg*50/3),mx=r(Math.min(kg*90/3,1333));const t=mx>=1333;
+    return{dose:`${mn}–${mx}mg/dose`,teto:t,
+    vols:[{l:'Susp 250mg/5ml',v:`${r5(mn/50)}–${r5(mx/50)}ml/dose`,nota:''},{l:'Susp 400mg/5ml',v:`${r5(mn/80)}–${r5(mx/80)}ml/dose`,nota:''}],
+    intervalos:[{freq:'8/8h',detalhe:'7–10 dias'}],obs:t?'⚠️ Teto de 4g/dia':''}}},
+  amoxiclav:{nome:'Amox + Clavulanato (padrão)',cat:'Antibiótico',apres:'Susp 400/57mg/5ml',
+    calc(kg){const mn=r(kg*50/2),mx=r(Math.min(kg*90/2,2000));const t=mx>=2000;
+    return{dose:`${mn}–${mx}mg/dose (amoxicilina)`,teto:t,
+    vols:[{l:'Susp 400/57mg/5ml',v:`${r5(mn/80)}–${r5(mx/80)}ml/dose`,nota:'calcular pela amoxicilina'}],
+    intervalos:[{freq:'12/12h',detalhe:'7–10 dias'}],obs:t?'⚠️ Teto 4g/dia (amoxicilina)':'Calcular sempre pela amoxicilina'}}},
+  azitromicina:{nome:'Azitromicina (padrão)',cat:'Antibiótico',apres:'Susp 200mg/5ml',
+    calc(kg){const d1=r(Math.min(kg*10,500)),d25=r(Math.min(kg*5,500));const t=d1>=500;
+    return{dose:`D1: ${d1}mg · D2-5: ${d25}mg`,teto:t,
+    vols:[{l:'Susp 200mg/5ml — D1',v:`${r5(d1/40)}ml`,nota:''},{l:'Susp 200mg/5ml — D2-5',v:`${r5(d25/40)}ml`,nota:''}],
+    intervalos:[{freq:'1x/dia',detalhe:'5 dias total'}],obs:t?'⚠️ Teto 500mg/dia':''}}},
+  cefalexina:{nome:'Cefalexina',cat:'Antibiótico',apres:'Susp 250mg/5ml',
+    calc(kg){const mn=r(kg*25/4),mx=r(Math.min(kg*50/4,1000));const t=mx>=1000;
+    return{dose:`${mn}–${mx}mg/dose`,teto:t,
+    vols:[{l:'Susp 250mg/5ml',v:`${r5(mn/50)}–${r5(mx/50)}ml`,nota:''}],
+    intervalos:[{freq:'6/6h',detalhe:'7–10 dias'}],obs:t?'⚠️ Teto 4g/dia':''}}},
+  tobramicina_fc:{nome:'Tobramicina inalatória',cat:'FC — ATB inalatório',apres:'Sol 300mg/5ml',fcOnly:true,
+    calc(kg){return{dose:'300mg por dose (dose fixa, independe do peso)',teto:false,
+    vols:[{l:'Sol 300mg/5ml',v:'5ml por nebulização',nota:'usar nebulizador específico para tobramicina'}],
+    intervalos:[{freq:'12/12h',detalhe:'28 dias ON / 28 dias OFF — esquema alternado'}],
+    obs:'Monitorar audição e função renal · Não diluir'}}},
+  dnase_fc:{nome:'DNase / Dornase alfa',cat:'FC — Mucolítico',apres:'Ampola 2,5mg/2,5ml',fcOnly:true,
+    calc(kg){return{dose:'2,5mg por nebulização (dose fixa)',teto:false,
+    vols:[{l:'Ampola 2,5mg/2,5ml',v:'1 ampola (2,5ml) sem diluição',nota:'nebulizador eFlow ou equivalente'}],
+    intervalos:[{freq:'1x ao dia',detalhe:'preferencialmente pela manhã · após fisioterapia respiratória'}],
+    obs:'Manter refrigerado (2-8°C) · Proteger da luz'}}},
+  azitro_fc:{nome:'Azitromicina 3x/semana (FC crônico)',cat:'FC — ATB crônico/anti-inflamatório',apres:'Susp 200mg/5ml · Comp 500mg',fcOnly:true,
+    calc(kg){const d=r(Math.min(kg*10,500));const t=d>=500;
+    return{dose:`${d}mg por dose`,teto:t,
+    vols:[{l:'Susp 200mg/5ml',v:`${r5(d/40)}ml`,nota:''},{l:'Comprimido 500mg',v:'1 comprimido',nota:'para >40kg'}],
+    intervalos:[{freq:'3x por semana (Seg/Qua/Sex)',detalhe:'uso crônico · efeito anti-inflamatório e antibiótico'}],
+    obs:t?'⚠️ Teto 500mg/dose':'Monitorar QTc · Evitar macrólidos concomitantes'}}},
+  amoxiclav_fc:{nome:'Amox-Clavulanato dose alta (FC exacerbação)',cat:'FC — Exacerbação oral',apres:'Susp 400/57mg/5ml',fcOnly:true,
+    calc(kg){const mn=r(kg*90/2),mx=r(Math.min(kg*90/2,2000));const t=mx>=2000;
+    return{dose:`${mn}mg/dose (amoxicilina) — dose alta FC`,teto:t,
+    vols:[{l:'Susp 400/57mg/5ml',v:`${r5(mn/80)}ml/dose`,nota:'calcular pela amoxicilina'}],
+    intervalos:[{freq:'12/12h',detalhe:'14–21 dias em exacerbação FC'}],
+    obs:t?'⚠️ Teto 4g/dia (amoxicilina)':'Dose 90mg/kg/dia de amoxicilina — dobro do padrão'}}},
+  adrenalina:{nome:'Adrenalina IM (anafilaxia)',cat:'EMERGÊNCIA',apres:'Sol 1mg/ml (1:1000)',
+    calc(kg){const d=r1(Math.min(kg*0.01,0.3));const t=d>=0.3;
+    return{dose:`${d}mg IM`,teto:t,
+    vols:[{l:'Sol 1mg/ml',v:`${r5(d)}ml IM na coxa lateral`,nota:''}],
+    intervalos:[{freq:'Repetir após 5–15min se sem melhora',detalhe:'SAMU 192 imediatamente'}],
+    obs:'⚠️ EMERGÊNCIA — acionar SAMU 192'}}},
+  diazepam:{nome:'Diazepam retal (convulsão)',cat:'EMERGÊNCIA',apres:'Sol 5mg/ml',
+    calc(kg){const d=r1(Math.min(kg*0.5,10));const t=d>=10;
+    return{dose:`${d}mg retal`,teto:t,
+    vols:[{l:'Sol 5mg/ml',v:`${r5(d/5)}ml via retal`,nota:'usar seringa sem agulha'}],
+    intervalos:[{freq:'Repetir após 5–10min se sem melhora',detalhe:'SAMU 192 imediatamente'}],
+    obs:'⚠️ EMERGÊNCIA — acionar SAMU 192'}}},
+};
+
+function resetCalc(){ document.getElementById('calcResult').style.display='none'; }
+
+function calcMed() {
+  const med=MEDS[document.getElementById('calcMed').value];
+  const kg=parseFloat(document.getElementById('calcKg').value);
+  const idade=document.getElementById('calcIdade').value;
+  const nomeP=document.getElementById('calcNome').value||'Paciente';
+  if(!med){showToast('⚠️ Selecione um medicamento');return;}
+  if(!kg||kg<=0){showToast('⚠️ Informe o peso do paciente');return;}
+  const res=med.calc(kg,idade);
+  const result=document.getElementById('calcResult');
+  const fcBadge=med.fcOnly?`<span class="fc-tag">FC</span>`:'';
+  let volsHTML=res.vols.map(v=>`<div class="dose-line"><div><div class="dl-label">${v.l}</div>${v.nota?`<div class="dl-nota">${v.nota}</div>`:''}</div><div class="dl-val">${v.v}</div></div>`).join('');
+  let intHTML=res.intervalos.map(i=>`<div class="dose-line"><div class="dl-label">${i.freq}</div><div class="dl-val">${i.detalhe}</div></div>`).join('');
+  result.innerHTML=`<div class="calc-result-box">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <strong style="font-size:1rem;color:var(--moss)">${med.nome}${fcBadge}</strong>
+    </div>
+    <div style="background:var(--cream);border-radius:var(--r-sm);padding:10px;margin-bottom:12px">
+      <div style="font-size:.78rem;color:var(--text-soft)">Dose calculada</div>
+      <div style="font-size:1.15rem;font-weight:800;color:var(--moss)">${res.dose}</div>
+      ${res.teto?'<div style="color:var(--alert);font-size:.78rem;margin-top:4px">⚠️ Dose teto atingida</div>':''}
+    </div>
+    ${volsHTML}
+    <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--sand)">
+      <div style="font-size:.75rem;font-weight:700;color:var(--text-soft);margin-bottom:6px">POSOLOGIA</div>
+      ${intHTML}
+    </div>
+    ${res.obs?`<div style="margin-top:10px;padding:10px;background:#fffbf0;border-radius:var(--r-sm);font-size:.8rem;color:#7a5a00">${res.obs}</div>`:''}
+    <button class="calc-copy-btn" onclick="copiarDose()"><span class="material-icons-round">content_copy</span> Copiar para WhatsApp</button>
+  </div>`;
+  result.style.display='block';
+  window._calcData={med,res,kg,idade,nomeP};
+}
+
+function copiarDose(){
+  const d=window._calcData;if(!d)return;
+  const txt=`💊 *${d.med.nome.toUpperCase()}*\n👤 ${d.nomeP} · ${d.kg}kg${d.idade?' · '+d.idade+'a':''}\n━━━━━━━━━━━━━━━━\n✅ *${d.res.dose}*\n\n${d.res.vols.map(v=>`• ${v.l}: ${v.v}${v.nota?' ('+v.nota+')':''}`).join('\n')}\n\n⏰ ${d.res.intervalos.map(i=>i.freq+': '+i.detalhe).join(' | ')}${d.res.obs?'\n\n⚠️ '+d.res.obs:''}\n━━━━━━━━━━━━━━━━\n_${CONFIG.doctorName}_`;
+  if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>showToast('✅ Copiado!'));}
+  else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('✅ Copiado!');}
+}
+
+// ══════════════════════════════════════════════════════
+// ARTIGOS
+// ══════════════════════════════════════════════════════
+const ARTIGOS_FALLBACK=[
+  {titulo:'Fibrose Cística: os moduladores CFTR e a nova era do tratamento',tag:'FC',resumo:'Como o Trikafta mudou a expectativa de vida e o manejo clínico dos pacientes FC no Brasil.'},
+  {titulo:'Asma de difícil controle: quando suspeitar e o que investigar',tag:'Asma',resumo:'Abordagem passo a passo para a criança que "não melhora" com o tratamento convencional.'},
+  {titulo:'Exposição ao tabagismo passivo e o pulmão em desenvolvimento',tag:'Prevenção',resumo:'Evidências sobre o impacto do tabaco em casa sobre a função pulmonar de crianças.'},
+  {titulo:'Criança que ronca: é normal? Quando investigar apneia?',tag:'Sono',resumo:'Guia para pais: diferença entre ronco fisiológico e síndrome da apneia obstrutiva do sono.'},
+];
+
+async function loadArticles(){
+  const c=document.getElementById('articlesContainer');
+  let arts=ARTIGOS_FALLBACK;
+  if(CONFIG.appsScriptURL&&!CONFIG.appsScriptURL.includes('SUA_URL')){
+    try{const r=await fetch(CONFIG.appsScriptURL+'?action=articles');const d=await r.json();if(d&&d.length)arts=d;}catch(e){}
+  }
+  c.innerHTML=arts.map(a=>`<div class="article-card"><span class="article-tag">${a.tag||'Pneumo'}</span><h3>${a.titulo}</h3><p>${a.resumo}</p></div>`).join('')+'<div class="footer-info" style="margin-top:16px">Novos artigos em breve!</div>';
+}
+
+// ══════════════════════════════════════════════════════
+// APPS SCRIPT
+// ══════════════════════════════════════════════════════
+async function gravarNaPlanilha(payload){
+  if(!CONFIG.appsScriptURL||CONFIG.appsScriptURL.includes('SUA_URL'))return;
+  try{await fetch(CONFIG.appsScriptURL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});}catch(e){}
+}
+
+// ══════════════════════════════════════════════════════
+// UTILITÁRIOS
+// ══════════════════════════════════════════════════════
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+function spawnParticles(){
+  const syms=['◦','·','○','∘'];
+  for(let i=0;i<8;i++){
+    const p=document.createElement('div');p.className='leaf-particle';
+    p.textContent=syms[Math.floor(Math.random()*syms.length)];
+    p.style.cssText=`left:${Math.random()*100}%;font-size:${8+Math.random()*8}px;color:rgba(90,180,214,${0.1+Math.random()*.2});animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*5}s`;
+    document.body.appendChild(p);
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded',()=>{
+  spawnParticles();
+  setTimeout(()=>{
+    document.getElementById('splash').classList.add('hide');
+    setTimeout(()=>{document.getElementById('splash').style.display='none';},900);
+  },2200);
+  // update calendar link
+  document.getElementById('calendarBtn').href=CONFIG.calendarURL;
+});
+</script>
+</body>
+</html>
